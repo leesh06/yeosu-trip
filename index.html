@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>남해 → 여수 → 화성 2박 3일</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy: #0f2b3c;
@@ -16,17 +16,18 @@
   --mint: #48b89f;
   --lavender: #9b7fbd;
   --cream: #faf6ef;
-  --dark: #1a1a2e;
-  --gray: #8a9aa5;
+  --dark: #111111; 
+  --gray: #555555;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: 'Noto Sans KR', sans-serif;
   background: var(--cream);
   color: var(--dark);
-  line-height: 1.7;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  word-break: keep-all; 
 }
 
 /* HERO */
@@ -46,121 +47,122 @@ body {
 .hero-wave { position: absolute; bottom: -2px; left: 0; width: 100%; height: 120px; }
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; color: #fff;
+  font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; color: #fff;
   letter-spacing: -1px; position: relative; z-index: 1; animation: fadeUp 1s ease-out;
+  line-height: 1.3;
 }
 .hero h1 span { display: inline-block; color: var(--sand); font-size: 0.6em; vertical-align: middle; margin: 0 0.3em; opacity: 0.7; }
-.hero-sub { font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 300; color: rgba(255,255,255,0.75); margin-top: 1rem; position: relative; z-index: 1; animation: fadeUp 1s ease-out 0.2s both; }
+.hero-sub { font-size: clamp(1.2rem, 3.5vw, 1.6rem); font-weight: 500; color: rgba(255,255,255,0.9); margin-top: 1rem; position: relative; z-index: 1; animation: fadeUp 1s ease-out 0.2s both; }
+.hero-date { font-size: clamp(1.1rem, 3.2vw, 1.4rem); font-weight: 900; color: #ffcc80; margin-top: 0.5rem; position: relative; z-index: 1; animation: fadeUp 1s ease-out 0.3s both; }
 .hero-tags { display: flex; gap: 0.75rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; animation: fadeUp 1s ease-out 0.4s both; }
-.hero-tag { padding: 0.5rem 1.2rem; border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; color: rgba(255,255,255,0.85); font-size: 0.85rem; backdrop-filter: blur(8px); background: rgba(255,255,255,0.06); }
-.scroll-hint { position: absolute; bottom: 140px; z-index: 1; animation: bounce 2s infinite 1.5s; color: rgba(255,255,255,0.5); font-size: 0.8rem; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
-.scroll-hint::after { content: '↓'; font-size: 1.4rem; }
+.hero-tag { padding: 0.6rem 1.4rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; color: #fff; font-size: 1rem; font-weight: 700; backdrop-filter: blur(8px); background: rgba(0,0,0,0.2); }
+.scroll-hint { position: absolute; bottom: 140px; z-index: 1; animation: bounce 2s infinite 1.5s; color: rgba(255,255,255,0.8); font-size: 1rem; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+.scroll-hint::after { content: '↓'; font-size: 1.8rem; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
 
 /* WARN BANNER */
-.warn-banner { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-left: 5px solid var(--warm); margin: 2rem auto; max-width: 800px; padding: 1.5rem 2rem; border-radius: 0 16px 16px 0; }
-.warn-banner h3 { color: var(--warm); font-size: 1rem; margin-bottom: 0.6rem; }
-.warn-banner ul { list-style: none; font-size: 0.88rem; color: #5d4037; }
-.warn-banner li { padding: 0.25rem 0; padding-left: 1.4rem; position: relative; }
-.warn-banner li::before { content: '⚠'; position: absolute; left: 0; font-size: 0.75rem; }
+.warn-banner { background: #fff3e0; border: 2px solid #ffcc80; border-left: 8px solid var(--warm); margin: 2rem auto; max-width: 800px; padding: 1.5rem; border-radius: 12px; }
+.warn-banner h3 { color: #d84315; font-size: 1.4rem; font-weight: 900; margin-bottom: 1rem; }
+.warn-banner ul { list-style: none; font-size: 1.15rem; color: #3e2723; }
+.warn-banner li { padding: 0.4rem 0; padding-left: 1.8rem; position: relative; margin-bottom: 0.5rem; font-weight: 500; }
+.warn-banner li::before { content: '⚠'; position: absolute; left: 0; font-size: 1.2rem; color: #d84315; }
 
 /* DAY SECTIONS */
-.day-section { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 2rem; }
-.day-header { position: relative; padding: 2.5rem 2rem; border-radius: 24px; margin-bottom: 2rem; overflow: hidden; color: #fff; }
+.day-section { max-width: 860px; margin: 0 auto; padding: 2rem 1rem; }
+.day-header { position: relative; padding: 2.5rem 1.5rem; border-radius: 20px; margin-bottom: 2rem; overflow: hidden; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 .day1-header { background: linear-gradient(135deg, #1a6b8a, #2e8b57); }
 .day2-header { background: linear-gradient(135deg, #0f2b3c, #1a6b8a); }
 .day3-header { background: linear-gradient(135deg, #5b3a6b, #1a6b8a); }
-.day-header::after { content: ''; position: absolute; top: -30%; right: -10%; width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,0.06); }
-.day-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; opacity: 0.2; position: absolute; top: 10px; right: 24px; line-height: 1; }
-.day-header h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.3rem; position: relative; }
-.day-header p { font-weight: 300; font-size: 0.95rem; opacity: 0.85; position: relative; }
+.day-num { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 900; opacity: 0.2; position: absolute; top: 10px; right: 20px; line-height: 1; }
+.day-header h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 0.5rem; position: relative; }
+.day-header p { font-weight: 500; font-size: 1.1rem; opacity: 0.95; position: relative; }
 
 /* TIMELINE */
-.timeline { position: relative; padding-left: 32px; }
-.timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--sky), var(--sea), var(--mint)); border-radius: 2px; }
-.tl-item { position: relative; padding-bottom: 1.5rem; }
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, var(--sky), var(--sea), var(--mint)); border-radius: 2px; }
+.tl-item { position: relative; padding-bottom: 2rem; }
 .tl-item:last-child { padding-bottom: 0; }
-.tl-dot { position: absolute; left: -28px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--sky); border: 3px solid var(--cream); box-shadow: 0 0 0 2px var(--sky); z-index: 2; }
+.tl-dot { position: absolute; left: -25px; top: 6px; width: 18px; height: 18px; border-radius: 50%; background: var(--sky); border: 4px solid var(--cream); box-shadow: 0 0 0 2px var(--sky); z-index: 2; }
 .tl-item.meal .tl-dot { background: var(--warm); box-shadow: 0 0 0 2px var(--warm); }
 .tl-item.rest .tl-dot { background: var(--mint); box-shadow: 0 0 0 2px var(--mint); }
 .tl-item.alert .tl-dot { background: var(--coral); box-shadow: 0 0 0 2px var(--coral); }
 .tl-item.option .tl-dot { background: var(--lavender); box-shadow: 0 0 0 2px var(--lavender); }
-.tl-card { background: #fff; border-radius: 16px; padding: 1.2rem 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; }
-.tl-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-.tl-time { font-size: 0.78rem; font-weight: 600; color: var(--sea); }
-.tl-item.meal .tl-time { color: var(--warm); }
-.tl-item.rest .tl-time { color: var(--mint); }
-.tl-item.alert .tl-time { color: var(--coral); }
-.tl-title { font-size: 1.05rem; font-weight: 700; margin: 0.2rem 0 0.15rem; color: var(--navy); }
-.tl-flavor { font-size: 0.82rem; color: var(--sea); font-style: italic; margin-bottom: 0.25rem; line-height: 1.5; }
-.tl-desc { font-size: 0.85rem; color: #5a6a75; line-height: 1.65; }
-.tl-badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px; font-size: 0.72rem; font-weight: 600; margin-top: 0.4rem; margin-right: 0.3rem; }
-.badge-move { background: #e3f2fd; color: #1565c0; }
-.badge-tip { background: #e8f5e9; color: #2e7d32; }
-.badge-warn { background: #fce4ec; color: #c62828; }
-.badge-info { background: #f3e5f5; color: #6a1b9a; }
-.badge-food { background: #fff3e0; color: #e65100; }
+.tl-card { background: #fff; border-radius: 16px; padding: 1.5rem; border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+.tl-time { font-size: 1.15rem; font-weight: 900; color: var(--sea); margin-bottom: 0.3rem; }
+.tl-item.meal .tl-time { color: #d84315; }
+.tl-item.rest .tl-time { color: #2e7d32; }
+.tl-item.alert .tl-time { color: #c62828; }
+.tl-title { font-size: 1.5rem; font-weight: 900; margin: 0.3rem 0 0.5rem; color: var(--navy); }
+.tl-flavor { font-size: 1.1rem; color: var(--sea); font-weight: 700; margin-bottom: 1rem; line-height: 1.5; background: #f0f8ff; padding: 0.8rem; border-radius: 8px; border-left: 4px solid var(--sky); }
+.tl-desc { font-size: 1.1rem; color: #222; line-height: 1.6; }
+/* 개별 정보 줄 분리용 클래스 */
+.info-line { display: block; margin-bottom: 0.6rem; padding: 0.2rem 0; border-bottom: 1px dashed #f0f0f0; }
+.info-line:last-child { border-bottom: none; margin-bottom: 0; }
+.alert-text { color: #c62828; font-weight: 700; background: #ffebee; padding: 0.4rem; border-radius: 4px; display: inline-block; margin-top: 0.3rem; }
 
-/* ALT ROUTE */
-.alt-route { background: #fff; border: 1px solid #e8e0d0; border-radius: 16px; padding: 1.2rem 1.5rem; margin: 1.2rem 0 1.5rem; }
-.alt-route h4 { font-size: 0.9rem; color: var(--warm); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.4rem; }
-.alt-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0; font-size: 0.85rem; color: #555; border-bottom: 1px dashed #eee; }
+.tl-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.95rem; font-weight: 700; margin-top: 0.8rem; margin-right: 0.4rem; }
+.badge-move { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+.badge-tip { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+.badge-warn { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+.badge-info { background: #f3e5f5; color: #6a1b9a; border: 1px solid #e1bee7; }
+.badge-food { background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; }
+
+/* ALT ROUTE / OPTIONS */
+.alt-route, .option-card { background: #fff; border: 2px solid #e8e0d0; border-radius: 16px; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+.alt-route h4, .option-card h4 { font-size: 1.3rem; font-weight: 900; color: #d84315; margin-bottom: 1rem; }
+.option-card { border-color: #e1d5f0; background: #fcf4ff; }
+.option-card h4 { color: #6a1b9a; }
+.alt-row { display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem 0; border-bottom: 1px dashed #ccc; }
 .alt-row:last-child { border-bottom: none; }
-.alt-from { background: #fce4ec; color: #c62828; padding: 0.15rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
-.alt-arrow { color: var(--gray); font-weight: 700; flex-shrink: 0; }
-.alt-to { background: #e8f5e9; color: #2e7d32; padding: 0.15rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
-.alt-reason { color: #888; font-size: 0.78rem; margin-left: 0.3rem; }
-
-/* OPTION CARDS */
-.option-card { background: linear-gradient(135deg, #f9f0ff, #f3e8ff); border: 1px solid #e1d5f0; border-radius: 16px; padding: 1.2rem 1.5rem; margin: 1rem 0 1.5rem; }
-.option-card h4 { color: var(--lavender); font-size: 0.9rem; margin-bottom: 0.5rem; }
-.option-card.cafe h4::before { content: '☕ '; }
-.option-card ul { list-style: none; font-size: 0.85rem; color: #555; }
-.option-card li { padding: 0.3rem 0; padding-left: 1.2rem; position: relative; }
-.option-card li::before { content: '→'; position: absolute; left: 0; color: var(--lavender); font-weight: 700; }
-.spot-flavor { font-size: 0.8rem; color: var(--sea); font-style: italic; display: block; margin-top: 0.1rem; }
+.alt-from-to { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.alt-from { background: #ffebee; color: #c62828; padding: 0.3rem 0.8rem; border-radius: 8px; font-size: 1.05rem; font-weight: 700; }
+.alt-arrow { color: var(--gray); font-weight: 900; font-size: 1.2rem; }
+.alt-to { background: #e8f5e9; color: #2e7d32; padding: 0.3rem 0.8rem; border-radius: 8px; font-size: 1.05rem; font-weight: 700; }
+.alt-reason { color: #333; font-size: 1.1rem; font-weight: 500; margin-top: 0.3rem; padding-left: 0.5rem; border-left: 3px solid #ddd; }
+.option-card ul { list-style: none; font-size: 1.1rem; color: #222; }
+.option-card li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; margin-bottom: 0.5rem; font-weight: 500; }
+.option-card li::before { content: '→'; position: absolute; left: 0; color: #6a1b9a; font-weight: 900; font-size: 1.2rem; }
+.spot-flavor { font-size: 1.05rem; color: #1565c0; font-weight: 700; display: block; margin-top: 0.4rem; padding: 0.5rem; background: #fff; border-radius: 8px; }
 
 /* CRUISE BOX */
-.cruise-box { background: linear-gradient(135deg, #0f2b3c, #1a3a5c); border-radius: 20px; padding: 1.8rem; color: #fff; margin: 1rem 0 1.5rem; position: relative; overflow: hidden; }
-.cruise-box::after { content: '⛴'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 3rem; opacity: 0.12; }
-.cruise-box h4 { font-size: 0.9rem; color: var(--sky); margin-bottom: 0.8rem; }
-.cruise-steps { list-style: none; font-size: 0.88rem; }
-.cruise-steps li { padding: 0.35rem 0; display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.cruise-box { background: linear-gradient(135deg, #0f2b3c, #1a3a5c); border-radius: 16px; padding: 1.5rem; color: #fff; margin: 1.5rem 0; }
+.cruise-box h4 { font-size: 1.3rem; color: #81d4fa; margin-bottom: 1rem; font-weight: 900; }
+.cruise-steps { list-style: none; font-size: 1.15rem; }
+.cruise-steps li { padding: 0.6rem 0; display: flex; align-items: flex-start; gap: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.15); }
 .cruise-steps li:last-child { border: none; }
-.cruise-time { font-weight: 700; color: var(--sand); min-width: 50px; }
-.cruise-steps .highlight { color: var(--coral); font-weight: 600; }
+.cruise-time { font-weight: 900; color: #ffcc80; min-width: 65px; font-size: 1.2rem; }
+.cruise-steps .highlight { color: #ff8a80; font-weight: 700; background: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 8px; width: 100%; margin-top: 0.5rem; }
 
 /* CHECKLIST */
-.checklist-section { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-.checklist-grid { display: grid; gap: 1rem; }
-.check-card { background: #fff; border-radius: 16px; padding: 1.2rem 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: grid; grid-template-columns: auto 1fr; gap: 0 1rem; align-items: start; }
-.check-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; grid-row: span 3; }
+.checklist-section { max-width: 860px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+.checklist-grid { display: flex; flex-direction: column; gap: 1rem; }
+.check-card { background: #fff; border: 1px solid #ddd; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.check-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 0.8rem; }
+.check-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
 .check-icon.food { background: #fff3e0; }
 .check-icon.stay { background: #e3f2fd; }
 .check-icon.spot { background: #e8f5e9; }
 .check-icon.cafe { background: #f3e5f5; }
-.check-name { font-weight: 700; font-size: 0.95rem; color: var(--navy); }
-.check-flavor { font-size: 0.8rem; color: var(--sea); font-style: italic; line-height: 1.5; }
-.check-detail { font-size: 0.82rem; color: #6a7a85; line-height: 1.6; }
-.check-detail strong { color: var(--coral); font-weight: 600; }
+.check-name { font-weight: 900; font-size: 1.4rem; color: var(--navy); }
+.check-flavor { font-size: 1.1rem; color: var(--sea); font-weight: 700; line-height: 1.5; margin-bottom: 0.8rem; background: #f8f9fa; padding: 0.6rem; border-radius: 8px; }
+.check-detail { font-size: 1.1rem; color: #333; line-height: 1.6; }
+.check-detail strong { color: #c62828; font-weight: 900; }
 
 /* FOOTER */
-.footer { text-align: center; padding: 3rem 1rem; background: var(--navy); color: rgba(255,255,255,0.5); font-size: 0.85rem; }
-.footer span { display: block; font-size: 1.5rem; margin-bottom: 0.5rem; }
+.footer { text-align: center; padding: 3rem 1rem; background: var(--navy); color: rgba(255,255,255,0.8); font-size: 1.1rem; font-weight: 700; }
+.footer span { display: block; font-size: 2rem; margin-bottom: 0.5rem; }
+
+/* 이미지 스타일링 */
+.tl-card img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
 
 @media (max-width: 600px) {
   .day-header { padding: 2rem 1.2rem; }
-  .day-num { font-size: 2.5rem; }
-  .timeline { padding-left: 28px; }
-  .tl-card { padding: 1rem 1.1rem; }
-  .warn-banner { margin: 1.5rem 1rem; padding: 1.2rem; }
-  .alt-row { flex-wrap: wrap; }
-}
-@media print {
-  .hero { min-height: auto; padding: 2rem; }
-  .scroll-hint { display: none; }
-  .tl-card:hover { transform: none; box-shadow: none; }
+  .day-num { font-size: 3rem; }
+  .timeline { padding-left: 20px; }
+  .tl-card { padding: 1.2rem; }
+  .warn-banner { margin: 1rem 0; padding: 1.2rem; }
+  .tl-title { font-size: 1.4rem; }
 }
 </style>
 </head>
@@ -169,6 +171,7 @@ body {
 <section class="hero">
   <h1>남해 <span>→</span> 여수 <span>→</span> 화성</h1>
   <p class="hero-sub">2박 3일 여행 일정표</p>
+  <p class="hero-date">4월 2일(목) ~ 4월 4일(토)</p>
   <div class="hero-tags">
     <div class="hero-tag">🚗 화성 출발</div>
     <div class="hero-tag">🌊 남해 1박</div>
@@ -182,13 +185,11 @@ body {
 </section>
 
 <div class="warn-banner">
-  <h3>📌 사전 확인 필수</h3>
+  <h3>📌 여행 전 꼭! 확인해주세요</h3>
   <ul>
-    <li>이사부크루즈: 탑승 19:20 / 30분 전(18:50) 도착 / <strong>신분증 지참</strong></li>
-    <li>꽃돌게장1번가: 브레이크타임 15:00~17:00 → 점심은 이른 시간 공략</li>
-    <li>황금수산: 휴무·브레이크타임 변동 → 당일 전화 확인</li>
-    <li>동백열차: 동절기(11~2월) 단축 운행, 점심시간 미운행 구간</li>
-    <li>보리암: 산불기간 통제 가능성 → 국립공원 안내 확인</li>
+    <li>렌트카는 11인승 이상으로 <strong>출발 전날 준비 필요</strong></li>
+    <li>크루즈 탑승을 위한 <strong>신분증 반드시 지참</strong></li>
+    <li>보리암, 향일암, 다랭이 마을 등 <strong>걷기 좋은 복장과 신발 필수</strong></li>
   </ul>
 </div>
 
@@ -196,7 +197,7 @@ body {
   <div class="day-header day1-header">
     <div class="day-num">01</div>
     <h2>🚗 DAY 1 — 화성 → 남해</h2>
-    <p>점심 → 보리암 → 독일마을 → 숙소 체크인·휴식 → 저녁</p>
+    <p>화성 출발 → 점심 식사 → 보리암 → 독일마을 → 숙소 휴식 → 저녁 식사</p>
   </div>
   <div class="timeline">
     <div class="tl-item">
@@ -204,123 +205,165 @@ body {
       <div class="tl-card">
         <div class="tl-time">08:00 – 09:00</div>
         <div class="tl-title">화성 출발</div>
-        <div class="tl-desc">고속도로 약 3.5~4시간. 휴게소 1~2회 정차하며 발목·종아리 스트레칭.</div>
+        <div class="tl-desc">
+          <span class="info-line">고속도로 이동 시간: <strong>약 3.5시간 ~ 4시간</strong></span>
+          <span class="info-line">중간에 꼭 휴게소를 1~2번 들러 발목과 종아리 스트레칭을 해주세요.</span>
+        </div>
         <span class="tl-badge badge-move">🚗 장거리 이동</span>
       </div>
     </div>
+    
     <div class="tl-item meal">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">12:00 – 13:20</div>
         <div class="tl-title">🍽 점심: 도우(DOW)</div>
-        <div class="tl-flavor">"남해 바다 앞에서 즐기는 유러피안 감성. 해산물 코스 전, 입맛을 깔끔하게 여는 첫 식사."</div>
-        <div class="tl-desc">남해 양식 레스토랑. 이후 해산물·막걸리 식단과 밸런스를 맞추는 시작점.<br>📍 경남 남해군 삼동면 삼이로 330 | 📞 0507-1354-7193 | 🔗 <a href="https://naver.me/5tJCbcuo" target="_blank" style="color:var(--sky); font-weight:600;">네이버 지도</a></div>
-        <span class="tl-badge badge-food">양식</span>
+        <div class="tl-flavor">"남해 바다 앞에서 즐기는 유러피안 감성의 양식 코스. 여행의 기분 좋은 시작입니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">남해와 여수에서 이어질 해산물위주 식단 전에 입맛을 깔끔하게 열어주는 첫 식사입니다.</span>
+          <span class="info-line">📍 <strong>주소:</strong> 경남 남해군 삼동면 삼이로 330</span>
+          <span class="info-line">📞 <strong>전화:</strong> 0507-1354-7193</span>
+        </div>
+        <span class="tl-badge badge-food">양식 레스토랑</span>
       </div>
     </div>
+
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">13:40 – 14:50</div>
         <div class="tl-title">⛰ 보리암</div>
-        <img src="boriam.png" alt="보리암 전경" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 0.8rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-               <div class="tl-flavor">"금산 정상 681m, 한려해상이 발 아래로. 한국 3대 기도처에서 소원 하나쯤 빌어볼 만한 곳.이성계가 아직 장군이던 시절 이 곳에서 기도를 하고 왕이 되었다."</div>
-        <div class="tl-desc">관람료 1,000원 (만 70세 이상 면제). 산불기간 통제 가능성 확인.<br>📍 제2주차장 및 매표소: 경남 남해군 이동면 보리암로 586 116-2<br><strong style="color:var(--coral);">주의사항:</strong> 제2주차장 만차 시, 제1주차장(이동면 신전리 5) 대기 혹은 주차 후 셔틀 이용</div>
+        <img src="boriam.png" alt="보리암 전경">
+        <div class="tl-flavor">"금산 정상 681m, 한려해상이 발 아래 펼쳐집니다. 이성계가 아직 장군이던 시절 기도를 하고 왕이 되었다는 한국 3대 기도처에서 소원 하나쯤 빌어보세요!"</div>
+        <div class="tl-desc">
+          <span class="info-line"><strong>관람료:</strong> 1,000원 (만 70세 이상은 면제됩니다)</span>
+          <span class="info-line">📍 <strong>주소:</strong> 경남 남해군 이동면 보리암로 586 116-2 (매표소 및 제2주차장)</span>
+          <span class="info-line alert-text">※ 주의: 제2주차장 만차 시, 아래쪽 제1주차장(이동면 신전리 5)에서 대기하시거나 주차 후 셔틀버스를 이용하셔야 합니다.</span>
+        </div>
         <span class="tl-badge badge-tip">🙏 3대 기도처</span>
         <span class="tl-badge badge-move">도우에서 약 20분</span>
       </div>
     </div>
+
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">15:10 – 15:50</div>
         <div class="tl-title">🏘 독일마을</div>
-        <img src="german.png" alt="독일마을 전경" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 0.8rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-        <div class="tl-flavor">"1960~70년대 파독 광부·간호사들의 향수가 깃든 마을. 남해 바다 위에 독일 지붕이 얹혀 있는 묘한 풍경."</div>
-        <div class="tl-desc">포토스팟 중심 가벼운 산책. 마을 내 <strong>파독전시관 방문 필수(만 65세 이상 무료)</strong>.<br>📍 주차장: 경남 남해군 삼동면 봉화리 2572-1 (주차장 기준 한쪽은 독일마을, 다른 한쪽은 원예예술촌)<br><strong style="color:var(--coral);">※ 늦어도 17:00에는 숙소로 출발 권장</strong></div>
+        <img src="german.png" alt="독일마을 전경">
+        <div class="tl-flavor">"1960~70년대 파독 광부·간호사 분들의 향수가 깃든 마을입니다. 남해 바다 위에 독일 지붕이 얹혀 있는 묘한 풍경을 자랑합니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">가볍게 산책하시고 사진 찍기 좋은 곳입니다. 마을 내 <strong>파독전시관</strong> 방문도 필수 코스입니다 (만 65세 이상 무료).</span>
+          <span class="info-line">📍 <strong>주차장:</strong> 경남 남해군 삼동면 봉화리 2572-1 (주차장을 기준으로 한쪽은 독일마을, 다른 한쪽은 원예예술촌입니다.)</span>
+          <span class="info-line alert-text">※ 늦어도 오후 4시 30분에는 숙소로 출발하시는 것을 권장합니다.</span>
+        </div>
         <span class="tl-badge badge-tip">📸 포토 산책</span>
-        <span class="tl-badge badge-move">보리암에서 약 25분</span>
       </div>
     </div>
+
     <div class="tl-item option">
       <div class="tl-dot"></div>
-      <div class="tl-card" style="border: 2px dashed #d4b8e8;">
+      <div class="tl-card" style="border: 2px dashed #9b7fbd;">
         <div class="tl-time" style="color:var(--lavender);">시간 여유 시 (선택)</div>
         <div class="tl-title">🌺 원예예술촌</div>
-        <div class="tl-flavor">"배우 박원숙 카페로 유명한 곳. 아름다운 정원 산책 코스."</div>
-        <div class="tl-desc">독일마을 주차장을 사이에 두고 바로 옆에 위치하여 동선이 매우 편리함.</div>
-        <span class="tl-badge badge-info">선택 사항</span>
+        <div class="tl-flavor">"배우 박원숙의 카페로 유명한 아름다운 정원 산책길입니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">독일마을 주차장을 사이에 두고 바로 옆에 위치하여 동선이 매우 편리합니다.</span>
+        </div>
+        <span class="tl-badge badge-info">가벼운 산책 코스</span>
       </div>
     </div>
+
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">15:50 – 17:00</div>
         <div class="tl-title">🏠 숙소 이동 & 체크인</div>
-        <img src="grandocean.png" alt="그랜드오션 펜션 전경" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 0.8rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-        <div class="tl-flavor">"다랭이마을이 내려다보이는 오션뷰 펜션에서 하루의 피로를 내려놓기."</div>
-        <div class="tl-desc">그랜드오션 펜션 (다랭이마을 권역). 독일마을→다랭이 약 50~60분 이동.<br>📍 경남 남해군 남면 남면로 930 | 📞 055-864-2020</div>
-        <span class="tl-badge badge-move">삼동→남면 ~60분</span>
-        <span class="tl-badge badge-info">체크아웃 11:00</span>
+        <img src="grandocean.png" alt="그랜드오션 펜션 전경">
+        <div class="tl-flavor">"다랭이마을이 내려다보이는 오션뷰 펜션에서 하루의 피로를 내려놓으세요."</div>
+        <div class="tl-desc">
+          <span class="info-line"><strong>숙소명:</strong> 그랜드오션 펜션 (체크아웃 11:00)</span>
+          <span class="info-line">📍 <strong>주소:</strong> 경남 남해군 남면 남면로 930</span>
+          <span class="info-line">📞 <strong>전화:</strong> 055-864-2020</span>
+        </div>
+        <span class="tl-badge badge-move">독일마을 → 다랭이 50~60분</span>
       </div>
     </div>
+
     <div class="tl-item rest">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">17:00 – 18:00</div>
         <div class="tl-title">💤 실내 휴식</div>
-        <div class="tl-desc">장거리 이동 + 관광 피로 해소. 약 1시간 쉬며 저녁 준비.</div>
+        <div class="tl-desc">
+          <span class="info-line">장거리 이동과 관광으로 쌓인 피로를 풀며, 약 1시간 정도 푹 쉬시며 저녁 준비를 하세요.</span>
+        </div>
         <span class="tl-badge badge-tip">필수 휴식</span>
       </div>
     </div>
+
     <div class="tl-item meal">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">18:00 – 19:30</div>
         <div class="tl-title">🍽 저녁: 시골할매 막걸리</div>
-        <div class="tl-flavor">"3대에 걸쳐 가업을 이루고 있는 대한민국의 토속적인 음식을 맛볼 수 있는 음식점. 외부 테라스에서 바다를 바라보며 식사 가능하여 바다를 바라보며 식사."</div>
-        <div class="tl-desc"><br>📍 주차장: 경남 남해군 남면 남면로 654 | 📞 0507-1324-8381<br>⚠️ <strong>라스트오더: 19:00</strong><br><strong style="color:var(--coral);">※ 다랭이마을 공영주차장 주차 후 마을길을 따라 내려오면 암수바위 옆에 위치</strong></div>
-        <span class="tl-badge badge-food">막걸리 · 토속 안주</span>
+        <div class="tl-flavor">"3대에 걸쳐 가업을 잇고 있는 토속 음식점입니다. 외부 테라스에서 탁 트인 바다를 바라보며 식사하실 수 있습니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">📍 <strong>주차장:</strong> 경남 남해군 남면 남면로 654</span>
+          <span class="info-line">📞 <strong>전화:</strong> 0507-1324-8381</span>
+          <span class="info-line alert-text">※ 다랭이마을 공영주차장 주차 후 마을길을 따라 내려오면 암수바위 옆에 위치해 있습니다.</span>
+          <span class="info-line alert-text">※ ⚠️ 마지막 주문: 19:00</span>
+        </div>
+        <span class="tl-badge badge-food">막걸리 · 토속 음식</span>
       </div>
     </div>
+
     <div class="tl-item rest">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">19:30 ~</div>
         <div class="tl-title">숙소 복귀 & 조기 취침</div>
-        <div class="tl-desc">둘째 날 이동·관광 대비 충분한 수면.</div>
+        <div class="tl-desc">
+          <span class="info-line">둘째 날 이동 및 관광에 대비하여 충분한 수면을 취하시길 바랍니다.</span>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="option-card cafe">
-    <h4>카페 휴식 포인트</h4>
+    <h4>☕ 카페 휴식 포인트</h4>
     <ul>
-      <li><strong>카페톨</strong> — 다랭이마을 인근 바다 뷰 카페. 저녁 전후로 활용.
-        <span class="spot-flavor">"다랭이 계단식 논밭 너머 수평선이 보이는 작은 카페. 해질녘 특히 좋음."</span>
+      <li><strong>카페톨</strong> — 다랭이마을 인근 바다 뷰 카페. 저녁 전후로 들르기 좋습니다.
+        <span class="spot-flavor">"다랭이 계단식 논밭 너머 수평선이 보이는 작은 카페입니다. 해질녘 특히 경치가 좋습니다."</span>
       </li>
     </ul>
   </div>
 
   <div class="alt-route">
-    <h4>🔄 대체 관광지 안내</h4>
+    <h4>🔄 계단이나 오르막이 힘드실 때 (대체 관광지)</h4>
     <div class="alt-row">
-      <span class="alt-from">보리암 불가 시</span>
-      <span class="alt-arrow">→</span>
-      <span class="alt-to">상주은모래비치</span>
-      <span class="alt-reason">평지 해변 산책, 무릎 부담 없음</span>
+      <div class="alt-from-to">
+        <span class="alt-from">보리암 불가 시</span>
+        <span class="alt-arrow">→</span>
+        <span class="alt-to">상주은모래비치</span>
+      </div>
+      <span class="alt-reason">평지 해변 산책로라 무릎 부담이 없습니다.</span>
     </div>
     <div class="alt-row">
-      <span class="alt-from">독일마을 불가 시</span>
-      <span class="alt-arrow">→</span>
-      <span class="alt-to">섬이정원</span>
-      <span class="alt-reason">실내+평지 정원, 날씨 무관</span>
+      <div class="alt-from-to">
+        <span class="alt-from">독일마을 불가 시</span>
+        <span class="alt-arrow">→</span>
+        <span class="alt-to">섬이정원</span>
+      </div>
+      <span class="alt-reason">실내 및 평지 위주의 예쁜 정원으로 날씨와 관계없이 좋습니다.</span>
     </div>
     <div class="alt-row">
-      <span class="alt-from">둘 다 불가 시</span>
-      <span class="alt-arrow">→</span>
-      <span class="alt-to">상주은모래비치 + 섬이정원</span>
-      <span class="alt-reason">평지 조합으로 편안한 오후</span>
+      <div class="alt-from-to">
+        <span class="alt-from">둘 다 불가 시</span>
+        <span class="alt-arrow">→</span>
+        <span class="alt-to">상주은모래비치 + 섬이정원</span>
+      </div>
+      <span class="alt-reason">오후 일정을 모두 평지 코스로 편안하게 조합하실 수 있습니다.</span>
     </div>
   </div>
 </section>
@@ -329,173 +372,220 @@ body {
   <div class="day-header day2-header">
     <div class="day-num">02</div>
     <h2>⛴ DAY 2 — 남해 → 여수</h2>
-    <p>게장 점심 → 오동도 → 숙소 휴식 → 일찍 저녁 → 크루즈</p>
+    <p>아침 산책 → 여수 이동 → 간장게장 점심 → 오동도 관광 → 휴식 → 크루즈 야경 투어</p>
   </div>
   <div class="timeline">
+    
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">07:30 – 08:30</div>
         <div class="tl-title">숙소 조식 & 짐 정리</div>
-        <div class="tl-desc">그랜드오션 조식 제공 여부 사전 확인. 체크아웃 11:00이지만 일찍 출발.</div>
+        <div class="tl-desc">
+          <span class="info-line">숙소에서 조식 제공 및 1층 카페에서 간단한 식사. 체크아웃은 11시이지만 둘째 날 일정을 위해 일찍 출발합니다.</span>
+        </div>
       </div>
     </div>
+
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">08:30 – 09:10</div>
         <div class="tl-title">📸 다랭이마을 전망대</div>
-        <img src="darange.png" alt="다랭이마을 전경" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 0.8rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-        <div class="tl-flavor">"108계단 논이 바다까지 흘러내리는 풍경. '한국의 마추픽추'라 불리는 이유를 30분이면 체감."</div>
-        <div class="tl-desc">전망 중심 30~40분. 무릎 상태에 따라 압축.</div>
+        <img src="darange.png" alt="다랭이마을 전경">
+        <div class="tl-flavor">"108계단 논이 바다까지 흘러내리는 풍경. '한국의 마추픽추'라 불리는 이유를 30분이면 체감하실 수 있습니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">오르내리지 않고 전망대 위주로 30~40분 정도 감상하시는 걸 추천합니다. 무릎 상태에 따라 일정을 압축하세요.</span>
+        </div>
         <span class="tl-badge badge-tip">📸 전망 포인트</span>
       </div>
     </div>
+
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">09:10 – 11:00</div>
         <div class="tl-title">남해 → 여수 이동</div>
-        <div class="tl-desc">약 2시간 소요. 통행료는 한국도로공사 조회로 사전 확인.</div>
-        <span class="tl-badge badge-move">🚗 2시간</span>
+        <div class="tl-desc">
+          <span class="info-line">이동 시간은 <strong>약 2시간</strong> 소요됩니다.</span>
+          <span class="info-line">통행료는 한국도로공사 조회를 통해 미리 확인해 두시면 편합니다.</span>
+        </div>
+        <span class="tl-badge badge-move">🚗 2시간 운전</span>
       </div>
     </div>
+
     <div class="tl-item meal">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">11:00 – 12:30</div>
         <div class="tl-title">🍽 점심: 꽃돌게장1번가</div>
-        <div class="tl-flavor">"여수 현지인들이 줄 서는 간장게장 맛집. 밥 한 그릇이 순식간에 사라지는 밥도둑의 정석."</div>
-        <div class="tl-desc">영업 10:00~20:30. 주차·좌석 넉넉. 브레이크타임 15:00~17:00이니 일찍!<br>📍 전남 여수시 봉산2로 36 꽃돌게장1번가 | 📞 0507-1395-0006</div>
-        <span class="tl-badge badge-food">간장게장</span>
-        <span class="tl-badge badge-warn">BT 15:00~17:00</span>
+        <div class="tl-flavor">"여수 현지인들도 줄을 서서 먹는 간장게장 맛집입니다. 밥 한 그릇이 순식간에 사라지는 진짜 밥도둑입니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">영업시간: 10:00~20:30 (주차 공간과 좌석이 넉넉합니다.)</span>
+          <span class="info-line alert-text">※ 15:00~17:00는 브레이크타임이므로 반드시 일찍 방문하셔야 합니다!</span>
+          <span class="info-line">📍 <strong>주소:</strong> 전남 여수시 봉산2로 36 꽃돌게장1번가</span>
+          <span class="info-line">📞 <strong>전화:</strong> 0507-1395-0006</span>
+        </div>
+        <span class="tl-badge badge-food">간장게장 정식</span>
       </div>
     </div>
+
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">13:00 – 14:30</div>
         <div class="tl-title">🌿 오동도</div>
-        <img src="odongdo.png" alt="오동도 전경" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 0.8rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-        <div class="tl-flavor">"동백꽃 3,000그루가 터널을 이루는 섬. 봄이면 붉은 꽃잎이 바닥에 떨어져 카펫을 깐 듯."</div>
-        <div class="tl-desc">동백열차 활용 권장 (도보 부담 최소화). 동절기 단축운행·점심 미운행 확인.<br>📍 공영주차장: 전남 여수시 오동도로 116</div>
-        <span class="tl-badge badge-tip">🚂 동백열차 추천</span>
+        <img src="odongdo.png" alt="오동도 전경">
+        <div class="tl-flavor">"동백꽃 3,000그루가 터널을 이루는 섬. 봄이면 붉은 꽃잎이 바닥에 떨어져 카펫을 깐 듯 아름답습니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">도보 부담을 최소화하기 위해 <strong>'동백열차'</strong> 탑승을 적극 권장합니다.</span>
+          <span class="info-line alert-text">※ 동절기 단축 운행 및 점심시간 미운행 여부를 꼭 확인하세요.</span>
+          <span class="info-line">📍 <strong>공영주차장:</strong> 전남 여수시 오동도로 116</span>
+        </div>
+        <span class="tl-badge badge-tip">🚂 동백열차 이용 권장</span>
       </div>
     </div>
+
     <div class="tl-item option">
       <div class="tl-dot"></div>
-      <div class="tl-card" style="border: 2px dashed #d4b8e8;">
-        <div class="tl-time" style="color:var(--lavender);">14:40 – 15:40 (선택)</div>
+      <div class="tl-card" style="border: 2px dashed #9b7fbd;">
+        <div class="tl-time" style="color:var(--lavender);">14:40 – 15:40 (선택 사항)</div>
         <div class="tl-title">🚡 해상케이블카</div>
-        <img src="cablecar.png" alt="해상케이블" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 0.8rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-        <div class="tl-flavor">"바다 위 25분, 발 아래로 여수 앞바다가 통째로 펼쳐지는 아찔한 공중 산책."</div>
-        <div class="tl-desc">돌산공원 정류장에서 왕복. 피곤하거나 시간 애매하면 <strong>과감히 생략</strong> → 바로 숙소. 주차 1시간 무료, 이후 10분/200원. 경로 우대 현장발권.<br>📍 전남 여수시 돌산읍 돌산로 3600-1</div>
-        <span class="tl-badge badge-info">선택 사항</span>
+        <img src="cablecar.png" alt="해상케이블">
+        <div class="tl-flavor">"바다 위를 지나는 25분, 발 아래로 여수 앞바다가 통째로 펼쳐지는 아찔하고 멋진 공중 산책입니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">돌산공원 정류장에서 왕복으로 탑승합니다. 피곤하시거나 시간이 애매하면 <strong>과감히 생략하시고</strong> 숙소로 가셔도 무방합니다.</span>
+          <span class="info-line">어르신 경로 우대로 현장 발권 시 할인이 적용됩니다.</span>
+          <span class="info-line">📍 <strong>타는 곳:</strong> 전남 여수시 돌산읍 돌산로 3600-1 (주차 1시간 무료, 이후 10분당 200원)</span>
+        </div>
       </div>
     </div>
+
     <div class="tl-item option">
       <div class="tl-dot"></div>
-      <div class="tl-card" style="border: 2px dashed #d4b8e8;">
+      <div class="tl-card" style="border: 2px dashed #9b7fbd;">
         <div class="tl-time" style="color:var(--lavender);">케이블카 전후 (선택)</div>
         <div class="tl-title">☕ 스타벅스 더여수돌산DT</div>
-        <div class="tl-flavor">"전국 10대 스타벅스로 꼽히는 곳. 돌산대교와 여수 앞바다가 통유리 너머 파노라마로 펼쳐진다."</div>
-        <div class="tl-desc">돌산 케이블카 정류장 인근. 케이블카를 타든 생략하든 숙소 이동 전 쉬어가는 포인트로 활용.<br>📍 전남 여수시 돌산읍 돌산로 3549</div>
+        <div class="tl-flavor">"전국 10대 스타벅스로 꼽히는 명소입니다. 돌산대교와 여수 앞바다가 파노라마 통유리 너머로 한눈에 들어옵니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">돌산 케이블카 정류장 근처에 있습니다. 케이블카를 타든 안 타든 숙소 이동 전 잠시 쉬어가는 포인트로 아주 좋습니다.</span>
+          <span class="info-line">📍 <strong>주소:</strong> 전남 여수시 돌산읍 돌산로 3549</span>
+        </div>
         <span class="tl-badge badge-info">🏆 전국 10대 스타벅스</span>
-        <span class="tl-badge badge-tip">돌산 케이블카 인근</span>
       </div>
     </div>
+
     <div class="tl-item rest">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">15:30 – 17:20</div>
-        <div class="tl-title">💤 숙소 체크인 & 휴식</div>
-        <img src="ellon.png" alt="엘론펜션 전경" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 0.8rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-        <div class="tl-flavor">"한옥 독채에서 조용히 쉬며 크루즈 전 에너지 충전."</div>
-        <div class="tl-desc">엘론펜션. 체크인 16:00 / 체크아웃 12:00. 케이블카 생략 시 15:30부터 넉넉히.<br>📍 전남 여수시 소라면 오룡길 28 엘론펜션</div>
+        <div class="tl-title">💤 한옥 숙소 체크인 & 휴식</div>
+        <img src="ellon.png" alt="엘론펜션 전경">
+        <div class="tl-flavor">"아늑한 한옥 독채에서 조용히 쉬며 크루즈를 타기 전 넉넉하게 에너지를 충전합니다."</div>
+        <div class="tl-desc">
+          <span class="info-line"><strong>숙소명:</strong> 엘론펜션 (체크인 16:00 / 체크아웃 12:00)</span>
+          <span class="info-line">케이블카를 생략하셨다면 15:30분부터 넉넉히 쉬실 수 있습니다.</span>
+          <span class="info-line">📍 <strong>주소:</strong> 전남 여수시 소라면 오룡길 28</span>
+          <span class="info-line">📞 <strong>전화번호: 010-5631-5016</strong></span>
+        </div>
         <span class="tl-badge badge-tip">크루즈 전 충분히 휴식</span>
       </div>
     </div>
+
     <div class="tl-item meal">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">17:30 – 18:30</div>
-        <div class="tl-title">🍽 저녁: 황금수산 (일찍!)</div>
-        <div class="tl-flavor">"봄이면 도다리쑥국, 여수 바다의 계절을 그릇 하나에 담아내는 로컬 횟집."</div>
-        <div class="tl-desc">크루즈 대비 <strong>18:30까지 반드시 마무리!</strong> 휴무·BT 변동 → 당일 전화 확인.<br>📍 전남 여수시 소호1길 86 | 📞 061-683-3382</div>
-        <span class="tl-badge badge-food">도다리쑥국</span>
-        <span class="tl-badge badge-warn">18:30 마감 필수</span>
+        <div class="tl-title">🍽 저녁: 황금수산 (일찍 드세요!)</div>
+        <div class="tl-flavor">"봄이면 도다리쑥국, 여수 바다의 제철 맛을 그릇 하나에 담아내는 로컬 횟집입니다."</div>
+        <div class="tl-desc">
+          <span class="info-line alert-text">※ 배를 타야 하므로 18:30까지는 반드시 식사를 마무리하셔야 합니다!</span>
+          <span class="info-line alert-text">※ 휴무일 및 브레이크타임이 변동될 수 있으니 당일 방문 전 꼭 전화로 확인하세요.</span>
+          <span class="info-line">📍 <strong>주소:</strong> 전남 여수시 소호1길 86</span>
+          <span class="info-line">📞 <strong>전화:</strong> 061-683-3382</span>
+        </div>
+        <span class="tl-badge badge-food">해산물 맛집</span>
       </div>
     </div>
+
     <div class="tl-item alert">
       <div class="tl-dot"></div>
-      <div class="tl-card" style="border-left: 4px solid var(--coral);">
+      <div class="tl-card" style="border-left: 6px solid var(--coral);">
         <div class="tl-time">18:50 까지</div>
-        <div class="tl-title">🚨 크루즈 터미널 도착</div>
-        <div class="tl-desc">이사부크루즈 국동유람선 터미널. 출항 30분 전 도착 및 신분증 지참 필수.<br>📍 전남 여수시 돌산읍 돌산로 3617-18 | 📞 0507-1357-2128</div>
-        <span class="tl-badge badge-warn">마감 시간 엄수</span>
+        <div class="tl-title">🚨 크루즈 터미널 도착 (시간 엄수)</div>
+        <div class="tl-desc">
+          <span class="info-line">이사부크루즈 국동유람선 터미널. 출항 30분 전에는 꼭 도착하셔야 합니다.</span>
+          <span class="info-line alert-text">※ 신분증 지참 필수! (없으면 승선 불가)</span>
+          <span class="info-line">📍 <strong>주소:</strong> 전남 여수시 돌산읍 돌산로 3617-18</span>
+          <span class="info-line">📞 <strong>전화:</strong> 0507-1357-2128</span>
+        </div>
       </div>
     </div>
+
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">19:20 ~</div>
         <div class="tl-title">⛴ 이사부크루즈 탑승</div>
-        <img src="cruise.png" alt="이사부크루즈 전경" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 0.8rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-        <div class="tl-flavor">"여수 밤바다 위로 불꽃이 터지고, 갑판에서 야경이 360도로 돌아가는 해상 투어."</div>
-        <div class="tl-desc">탑승 시간 약 1시간 10분 소요. 불꽃투어 요일 구분 있음.</div>
+        <img src="cruise.png" alt="이사부크루즈 전경">
+        <div class="tl-flavor">"여수 밤바다 위로 불꽃이 터지고, 갑판에서 야경이 360도로 펼쳐지는 환상적인 해상 투어입니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">탑승 시간은 약 1시간 10분 소요됩니다.</span>
+        </div>
       </div>
     </div>
+
     <div class="tl-item option">
       <div class="tl-dot"></div>
-      <div class="tl-card" style="border: 2px dashed #d4b8e8;">
+      <div class="tl-card" style="border: 2px dashed #9b7fbd;">
         <div class="tl-time" style="color:var(--lavender);">21:00 ~ (선택)</div>
         <div class="tl-title">🏮 낭만포차거리</div>
-        <div class="tl-flavor">"바닷바람 맞으며 포장마차 한 잔. '여수 밤바다' 노래가 절로 나오는 곳."</div>
-        <div class="tl-desc">크루즈 하선 후 분위기만 보고 정리. 동절기 17:00~24:00. 매월 첫째 수 휴무.</div>
+        <div class="tl-flavor">"바닷바람 맞으며 포장마차의 정취를 느낄 수 있는 곳"</div>
+        <div class="tl-desc">
+          <span class="info-line">크루즈 하선 후 분위기만 가볍게 보고 숙소로 돌아가시는 것도 좋습니다.</span>
+          <span class="info-line">운영시간: 동절기 17:00~24:00 (매월 첫째 수요일 휴무)</span>
+        </div>
         <span class="tl-badge badge-info">분위기만 잠깐</span>
       </div>
     </div>
   </div>
 
   <div class="cruise-box">
-    <h4>🕐 크루즈 타임라인 (역산)</h4>
+    <h4>🕐 크루즈 타임라인 (시간 역산 필수!)</h4>
     <ul class="cruise-steps">
       <li><span class="cruise-time">19:20</span> 크루즈 출항 (소요시간 1h 10m)</li>
-      <li><span class="cruise-time">18:50</span> 터미널 도착 마감 (30분 전)</li>
-      <li><span class="cruise-time">18:30</span> 저녁 마무리 + 이동</li>
-      <li><span class="cruise-time">17:30</span> 저녁 시작 (황금수산)</li>
-      <li class="highlight">→ 조금만 늘어져도 탑승 리스크! 시간 엄수</li>
-    </ul>
-  </div>
-
-  <div class="option-card cafe">
-    <h4>카페 휴식 포인트</h4>
-    <ul>
-      <li><strong>스타벅스 더여수돌산DT</strong> — 돌산 케이블카 인근
-        <span class="spot-flavor">"전국 10대 스타벅스. 돌산대교 + 여수 앞바다 파노라마."</span>
-      </li>
+      <li><span class="cruise-time">18:50</span> 터미널 도착 마감 (승선 30분 전)</li>
+      <li><span class="cruise-time">18:30</span> 저녁 식사 마무리 및 바로 이동</li>
+      <li><span class="cruise-time">17:30</span> 횟집에서 저녁 식사 시작 (황금수산)</li>
+      <li class="highlight">조금만 늘어져도 배 탑승이 어렵습니다. 시간을 꼭 엄수해주세요!</li>
     </ul>
   </div>
 
   <div class="alt-route">
-    <h4>🔄 대체 관광지 안내</h4>
+    <h4>🔄 날씨가 안 좋거나 걷기 힘들 때 (대체 관광지)</h4>
     <div class="alt-row">
-      <span class="alt-from">오동도 불가 시</span>
-      <span class="alt-arrow">→</span>
-      <span class="alt-to">아쿠아플라넷 여수</span>
-      <span class="alt-reason">09:30~19:00, 실내 관람 2시간</span>
+      <div class="alt-from-to">
+        <span class="alt-from">오동도 걷기가 힘들다면</span>
+        <span class="alt-arrow">→</span>
+        <span class="alt-to">아쿠아플라넷 여수</span>
+      </div>
+      <span class="alt-reason">완전한 실내 관람 시설로, 09:30~19:00 동안 약 2시간 가량 다리 아프지 않게 남해 바다 생태계를 구경하실 수 있습니다.</span>
     </div>
     <div class="alt-row">
-      <span class="alt-from">오동도 불가 시</span>
-      <span class="alt-arrow">→</span>
-      <span class="alt-to">아르떼뮤지엄 여수</span>
-      <span class="alt-reason">몰입형 미디어아트, 실내, 성인 19,000원</span>
+      <div class="alt-from-to">
+        <span class="alt-from">오동도 걷기가 힘들다면</span>
+        <span class="alt-arrow">→</span>
+        <span class="alt-to">아르떼뮤지엄 여수</span>
+      </div>
+      <span class="alt-reason">성인 19,000원의 요금이 있지만, 빛과 소리의 화려한 몰입형 미디어아트를 실내에서 편하게 감상하기 좋습니다.</span>
     </div>
     <div class="alt-row">
-      <span class="alt-from">케이블카 생략 시</span>
-      <span class="alt-arrow">→</span>
-      <span class="alt-to">스타벅스 더여수돌산DT + 바로 숙소</span>
-      <span class="alt-reason">커피 한 잔 후 숙소에서 넉넉한 휴식</span>
+      <div class="alt-from-to">
+        <span class="alt-from">케이블카 생략 시</span>
+        <span class="alt-arrow">→</span>
+        <span class="alt-to">스타벅스 더여수돌산DT + 바로 숙소</span>
+      </div>
+      <span class="alt-reason">바다뷰가 멋진 카페에서 커피 한 잔만 하시고, 숙소로 일찍 들어가 넉넉한 휴식을 취하세요.</span>
     </div>
   </div>
 </section>
@@ -504,254 +594,317 @@ body {
   <div class="day-header day3-header">
     <div class="day-num">03</div>
     <h2>🏠 DAY 3 — 여수 → 화성 귀가</h2>
-    <p>오전 관광 1개 + 점심 장어 + 장거리 귀가</p>
+    <p>따뜻한 국밥 아침 → 향일암 경치 구경 → 기력 보충 장어 점심 → 화성 집으로 출발</p>
   </div>
   <div class="timeline">
+    
     <div class="tl-item meal">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">08:00 – 09:00</div>
         <div class="tl-title">🍽 아침: 진남옥</div>
-        <div class="tl-flavor">"새벽부터 뽀얗게 우려낸 국밥 한 그릇. 여수 현지인의 해장 성지."</div>
-        <div class="tl-desc">영업 08:00~21:00 (LO 20:00). 컨디션에 따라 생략 후 일찍 출발도 OK.</div>
-        <span class="tl-badge badge-food">국밥</span>
+        <div class="tl-flavor">"새벽부터 뽀얗게 우려낸 국밥 한 그릇. 여수 현지인들도 즐겨 찾는 해장 성지입니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">영업시간: 08:00~21:00 (라스트오더 20:00)</span>
+          <span class="info-line">컨디션에 따라 아침 식사가 부담스러우시면 쿨하게 생략하고 일찍 출발하셔도 좋습니다.</span>
+        </div>
+        <span class="tl-badge badge-food">든든한 국밥</span>
       </div>
     </div>
+
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">09:30 – 11:30</div>
         <div class="tl-title">🌅 향일암</div>
-        <img src="hyangilam.png" alt="향일암 전경" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 0.8rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-        <div class="tl-flavor">"해를 향해 서 있는 암자. 일출 명소로 유명하지만, 낮에도 쪽빛 바다와 기암절벽이 압권."</div>
-        <div class="tl-desc">이용시간 일출~일몰. 계단·경사가 있으나 코스가 짧아 무리하지 않는 수준.</div>
-        <span class="tl-badge badge-tip">🌅 일출 명소</span>
+        <img src="hyangilam.png" alt="향일암 전경">
+        <div class="tl-flavor">"해를 향해 서 있는 암자. 일출 명소로 유명하지만, 낮에도 쪽빛 바다와 기암절벽이 이루는 장관이 압권입니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">이용시간: 일출 ~ 일몰</span>
+          <span class="info-line">계단과 경사가 조금 있으나 코스가 짧은 편입니다. 무리하지 않고 천천히 오르셔도 좋습니다.</span>
+        </div>
+        <span class="tl-badge badge-tip">멋진 절경 포인트</span>
       </div>
     </div>
+
     <div class="tl-item meal">
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-time">12:00 – 13:00</div>
         <div class="tl-title">🍽 점심: 상아식당 (장어)</div>
-        <div class="tl-flavor">"여수 어항단지의 장어 전문점. 바다장어 장어탕, 소금구이·양념구이가 대표 메뉴. 여행 마지막 식사를 든든하게"</div>
-        <div class="tl-desc">영업 07:00~20:00. 예약·포장·주차 가능. 대체: 7공주장어탕.</div>
-        <span class="tl-badge badge-food">장어구이</span>
+        <div class="tl-flavor">"여수 어항단지의 장어 전문점. 든든한 바다장어 요리로 여행 마지막 식사를 알차게 채워줍니다."</div>
+        <div class="tl-desc">
+          <span class="info-line">바다장어 장어탕, 소금구이, 양념구이가 대표 메뉴입니다.</span>
+          <span class="info-line">영업시간: 07:00~20:00 (예약, 포장, 주차 모두 가능합니다.)</span>
+          <span class="info-line">📍 자리가 없다면 옆집인 <strong>'7공주장어탕'</strong>으로 대체하셔도 훌륭합니다.</span>
+        </div>
+        <span class="tl-badge badge-food">보양식 장어구이</span>
       </div>
     </div>
+
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-card">
-        <div class="tl-time">13:10 ~</div>
-        <div class="tl-title">🚗 화성 방향 귀가 출발</div>
-        <div class="tl-desc">약 4~5시간. 휴게소 1~2회 필수 정차. 점심 후 졸음 구간 주의!</div>
-        <span class="tl-badge badge-move">약 4~5시간</span>
+        <div class="tl-time">오후 1:10 출발</div>
+        <div class="tl-title">🚗 화성 방향으로 출발</div>
+        <div class="tl-desc">
+          <span class="info-line">귀가하시는 데 <strong>약 4~5시간</strong>이 소요됩니다.</span>
+          <span class="info-line">점심 식사 직후 졸음 구간이 매우 위험하니, 최소 1~2회 휴게소에 들러 꼭 쉬어가세요.</span>
+        </div>
       </div>
     </div>
+
     <div class="tl-item rest">
       <div class="tl-dot"></div>
       <div class="tl-card">
-        <div class="tl-time">17:00 – 18:00</div>
-        <div class="tl-title">🏠 화성 도착 (예상)</div>
-        <div class="tl-desc">수고하셨습니다! 🎉</div>
+        <div class="tl-time">17:00 – 18:00 (예상)</div>
+        <div class="tl-title">🏠 화성 집 도착</div>
+        <div class="tl-desc">
+          <span class="info-line">무사히 잘 다녀오셨습니다. 수고하셨습니다! 🎉</span>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="option-card cafe">
-    <h4>카페 휴식 포인트</h4>
+    <h4>☕ 여유로운 귀가를 위한 포인트 (카페 모이핀)</h4>
     <ul>
-      <li><strong>모이핀</strong> — 향일암 인근 오션뷰 대형카페
-        <span class="spot-flavor">"널찍한 통유리 앞에서 커피 한 잔. 여수의 여유를 마지막까지."</span>
+      <li><strong>모이핀:</strong> 향일암 근처에 위치한 대형 오션뷰 카페입니다.
+        <span class="spot-flavor">"널찍한 통유리 앞에서 커피 한 잔의 여유. 장거리 운전 전에 여수의 여유를 마지막까지 만끽하세요."</span>
       </li>
     </ul>
   </div>
 
-  <div class="alt-route">
-    <h4>🔄 대체 관광지 안내</h4>
-    <div class="alt-row">
-      <span class="alt-from">향일암 불가 시</span>
-      <span class="alt-arrow">→</span>
-      <span class="alt-to">아쿠아플라넷 여수</span>
-      <span class="alt-reason">09:30~19:00, 실내 평지 관람 약 2시간</span>
-    </div>
-    <div class="alt-row">
-      <span class="alt-from">향일암 불가 시</span>
-      <span class="alt-arrow">→</span>
-      <span class="alt-to">아르떼뮤지엄 여수</span>
-      <span class="alt-reason">몰입형 미디어아트, 실내</span>
-    </div>
-    <div class="alt-row">
-      <span class="alt-from">관광 전부 생략 시</span>
-      <span class="alt-arrow">→</span>
-      <span class="alt-to">모이핀 (카페) → 일찍 귀가</span>
-      <span class="alt-reason">오션뷰 카페에서 여유롭게 쉰 뒤 출발</span>
-    </div>
+  <div class="option-card cafe">
+    <h4>🚗 귀가 운전 꿀팁</h4>
+    <ul>
+      <li>4~5시간 장거리 운전이므로 휴게소 1~2회 정차는 <strong>필수</strong>입니다.</li>
+      <li>점심 식사 후 1~2시간이 가장 졸음이 올 때입니다. 차 창문을 열어 <strong>환기</strong>를 꼭 해주세요.</li>
+      <li>만약 진남옥 아침을 생략하셨다면 일정 자체가 앞당겨지므로 더욱 여유 있는 귀가가 가능합니다.</li>
+    </ul>
   </div>
 
-  <div class="option-card cafe">
-    <h4>귀가 운전 팁</h4>
-    <ul>
-      <li>4~5시간 장거리 → 반드시 1~2회 휴게소 정차</li>
-      <li>점심 후 졸음 위험: 출발 1~2시간 후 → 커피·환기 필수</li>
-      <li>진남옥 아침 생략 + 일찍 출발 → 여유 있는 귀가도 현실적</li>
-    </ul>
+  <div class="alt-route">
+    <h4>🔄 날씨가 안 좋거나 걷기 힘들 때 (대체 관광지)</h4>
+    <div class="alt-row">
+      <div class="alt-from-to">
+        <span class="alt-from">향일암 오르기가 부담될 때</span>
+        <span class="alt-arrow">→</span>
+        <span class="alt-to">아쿠아플라넷 또는 아르떼뮤지엄</span>
+      </div>
+      <span class="alt-reason">어제 못 가셨던 실내 평지 관람 시설들을 오늘 오전에 방문하셔도 좋습니다.</span>
+    </div>
+    <div class="alt-row">
+      <div class="alt-from-to">
+        <span class="alt-from">오전 관광 모두 생략 시</span>
+        <span class="alt-arrow">→</span>
+        <span class="alt-to">모이핀 카페 휴식 후 일찍 귀가</span>
+      </div>
+      <span class="alt-reason">관광이 피곤하시다면 뷰가 좋은 대형 카페에서 오전에 푹 쉰 뒤, 차가 막히기 전에 훌쩍 출발하는 것도 좋은 선택입니다.</span>
+    </div>
   </div>
 </section>
 
 <section class="checklist-section">
   <div class="day-header" style="background: linear-gradient(135deg, #2c3e50, #34495e);">
-    <h2>📋 장소별 핵심 체크리스트</h2>
-    <p>한눈에 보는 식당 · 숙소 · 관광지 정보</p>
+    <h2>📋 장소별 상세 정보 요약본</h2>
+    <p>가시는 곳의 특징, 주소, 전화번호를 큰 글씨로 한눈에 볼 수 있게 모아두었습니다.</p>
   </div>
 
-  <h3 style="margin:1.5rem 0 0.8rem; color:var(--sea); font-size:1.1rem;">🌊 남해 권역</h3>
+  <h3 style="margin:2.5rem 0 1rem; color:var(--sea); font-size:1.6rem; font-weight:900;">🌊 첫째 날 (남해 권역)</h3>
   <div class="checklist-grid">
     <div class="check-card">
-      <div class="check-icon food">🍽</div>
-      <div class="check-name">도우(DOW)</div>
-      <div class="check-flavor">"남해 바다 앞 유러피안 감성 양식. 해산물 일정 전 입맛 여는 첫 식사."</div>
-      <div class="check-detail">경남 남해군 삼동면 삼이로 330 · 0507-1354-7193</div>
+      <div class="check-header">
+        <div class="check-icon food">🍽</div>
+        <div class="check-name">도우(DOW) 식당</div>
+      </div>
+      <div class="check-flavor">"바다 앞 유러피안 감성의 양식 (1일차 점심)"</div>
+      <div class="check-detail">
+        <div class="info-line">📍 경남 남해군 삼동면 삼이로 330</div>
+        <div class="info-line">📞 0507-1354-7193</div>
+      </div>
     </div>
+    
     <div class="check-card">
-      <div class="check-icon spot">⛰</div>
-      <div class="check-name">보리암</div>
-      <div class="check-flavor">"금산 681m, 한려해상이 발아래. 한국 3대 기도처에서 소원 하나."</div>
-      <div class="check-detail">경남 남해군 이동면 보리암로 586 116-2 <strong>(만차시 제1주차장: 이동면 신전리 5)</strong> · 관람료 1,000원</div>
+      <div class="check-header">
+        <div class="check-icon spot">⛰</div>
+        <div class="check-name">보리암</div>
+      </div>
+      <div class="check-flavor">"금산 681m, 발 아래 한려해상 (한국 3대 기도처)"</div>
+      <div class="check-detail">
+        <div class="info-line">📍 경남 남해군 이동면 보리암로 586 116-2</div>
+        <div class="info-line alert-text">※ 매표소 및 제2주차장 만차 시, 아래 제1주차장(신전리 5) 이용 및 셔틀버스 탑승 (관람료 1,000원)</div>
+      </div>
     </div>
-    <div class="check-card">
-      <div class="check-icon spot">🏘</div>
-      <div class="check-name">독일마을 & 파독전시관</div>
-      <div class="check-flavor">"파독 광부·간호사들의 향수. 남해 바다 위 독일 지붕의 묘한 풍경."</div>
-      <div class="check-detail">주차장: 경남 남해군 삼동면 봉화리 2572-1 · 파독전시관(만 65세 이상 무료)</div>
-    </div>
-    <div class="check-card">
-      <div class="check-icon stay">🏠</div>
-      <div class="check-name">그랜드오션 펜션</div>
-      <div class="check-flavor">"다랭이마을이 내려다보이는 오션뷰 펜션."</div>
-      <div class="check-detail">경남 남해군 남면 남면로 930 · 055-864-2020</div>
-    </div>
-    <div class="check-card">
-      <div class="check-icon food">🍶</div>
-      <div class="check-name">시골할매 막걸리</div>
-      <div class="check-flavor">"직접 담근 막걸리에 토속 안주가 줄줄이. 남해 첫 밤의 정석."</div>
-      <div class="check-detail">경남 남해군 남면 남면로 654 · 📞 0507-1324-8381 · <strong>라스트오더 19:00</strong></div>
-    </div>
-    <div class="check-card">
-      <div class="check-icon cafe">☕</div>
-      <div class="check-name">카페톨 (선택)</div>
-      <div class="check-flavor">"다랭이 논밭 너머 수평선. 해질녘 특히 좋음."</div>
-      <div class="check-detail">다랭이마을 인근 · 마을 주차장 이용</div>
-    </div>
-  </div>
 
-  <h3 style="margin:2rem 0 0.8rem; color:var(--sea); font-size:1.1rem;">⛴ 여수 권역</h3>
-  <div class="checklist-grid">
     <div class="check-card">
-      <div class="check-icon food">🦀</div>
-      <div class="check-name">꽃돌게장1번가</div>
-      <div class="check-flavor">"현지인이 줄 서는 간장게장. 밥도둑의 정석."</div>
-      <div class="check-detail">전남 여수시 봉산2로 36 · 0507-1395-0006 · 영업 10:00~20:30 · <strong>BT 15:00~17:00</strong></div>
+      <div class="check-header">
+        <div class="check-icon spot">🏘</div>
+        <div class="check-name">독일마을 & 파독전시관</div>
+      </div>
+      <div class="check-flavor">"남해 바다 위 독일 지붕 (포토 산책)"</div>
+      <div class="check-detail">
+        <div class="info-line">📍 주차장: 경남 남해군 삼동면 봉화리 2572-1</div>
+        <div class="info-line">파독전시관 만 65세 이상 무료</div>
+      </div>
     </div>
+
     <div class="check-card">
-      <div class="check-icon spot">🌿</div>
-      <div class="check-name">오동도</div>
-      <div class="check-flavor">"동백 3,000그루가 터널을 이루는 섬. 봄엔 붉은 꽃잎 카펫."</div>
-      <div class="check-detail">공영주차장: 전남 여수시 오동도로 116 · 동백열차 활용(동절기·점심시간 확인)</div>
+      <div class="check-header">
+        <div class="check-icon stay">🏠</div>
+        <div class="check-name">그랜드오션 펜션</div>
+      </div>
+      <div class="check-flavor">"다랭이마을 근처 바다 전망 숙소"</div>
+      <div class="check-detail">
+        <div class="info-line">📍 경남 남해군 남면 남면로 930</div>
+        <div class="info-line">📞 055-864-2020 (체크아웃 11:00)</div>
+      </div>
     </div>
+
     <div class="check-card">
-      <div class="check-icon spot">🚡</div>
-      <div class="check-name">해상케이블카 (선택)</div>
-      <div class="check-flavor">"바다 위 25분 공중 산책. 여수 앞바다가 발 아래 통째로."</div>
-      <div class="check-detail">전남 여수시 돌산읍 돌산로 3600-1 (돌산공원 정류장) · 주차 1시간 무료 · 경로 우대 현장발권</div>
+      <div class="check-header">
+        <div class="check-icon food">🍶</div>
+        <div class="check-name">시골할매 막걸리</div>
+      </div>
+      <div class="check-flavor">"구수한 3대 가업 토속 밥상 (1일차 저녁)"</div>
+      <div class="check-detail">
+        <div class="info-line">📍 경남 남해군 남면 남면로 654</div>
+        <div class="info-line">📞 0507-1324-8381</div>
+        <div class="info-line alert-text">※ 주의: 저녁 7시 전까지는 꼭 주문하셔야 합니다! (라스트오더 19:00)</div>
+      </div>
     </div>
+
     <div class="check-card">
-      <div class="check-icon cafe">☕</div>
-      <div class="check-name">스타벅스 더여수돌산DT (선택)</div>
-      <div class="check-flavor">"전국 10대 스타벅스로 꼽히는 곳. 돌산대교 + 앞바다 파노라마 통유리."</div>
-      <div class="check-detail">전남 여수시 돌산읍 돌산로 3549 · 케이블카 전후 쉼표</div>
-    </div>
-    <div class="check-card">
-      <div class="check-icon stay">🏠</div>
-      <div class="check-name">엘론펜션</div>
-      <div class="check-flavor">"조용한 한옥 독채에서 여수의 밤을."</div>
-      <div class="check-detail">전남 여수시 소라면 오룡길 28 · 체크인 16:00 / 체크아웃 12:00</div>
-    </div>
-    <div class="check-card">
-      <div class="check-icon food">🐟</div>
-      <div class="check-name">황금수산</div>
-      <div class="check-flavor">"여수 바다의 계절을 그릇에 담는 로컬 횟집. 봄엔 도다리쑥국."</div>
-      <div class="check-detail">전남 여수시 소호1길 86 · 061-683-3382 · <strong>휴무·BT 당일 전화 확인 필수</strong></div>
-    </div>
-    <div class="check-card">
-      <div class="check-icon spot">⛴</div>
-      <div class="check-name">이사부크루즈</div>
-      <div class="check-flavor">"여수 밤바다 위로 불꽃이 터지는 해상 야경 투어."</div>
-      <div class="check-detail">전남 여수시 돌산읍 돌산로 3617-18 · 0507-1357-2128 · <strong>19:20 탑승 / 신분증 필수</strong></div>
-    </div>
-    <div class="check-card">
-      <div class="check-icon spot">🏮</div>
-      <div class="check-name">낭만포차거리 (선택)</div>
-      <div class="check-flavor">"바닷바람에 포장마차 한 잔. '여수 밤바다'가 절로 나오는 곳."</div>
-      <div class="check-detail">동절기 17:00~24:00 · 매월 첫째 수요일 휴무</div>
-    </div>
-    <div class="check-card">
-      <div class="check-icon food">🍲</div>
-      <div class="check-name">진남옥</div>
-      <div class="check-flavor">"뽀얗게 우린 국밥 한 그릇. 여수 현지인의 해장 성지."</div>
-      <div class="check-detail">영업 08:00~21:00 (LO 20:00) · 셋째 날 아침</div>
-    </div>
-    <div class="check-card">
-      <div class="check-icon spot">🌅</div>
-      <div class="check-name">향일암</div>
-      <div class="check-flavor">"해를 향해 선 암자. 쪽빛 바다와 기암절벽이 압권인 일출 명소."</div>
-      <div class="check-detail">일출~일몰 · 계단·경사 있으나 코스 짧음</div>
-    </div>
-    <div class="check-card">
-      <div class="check-icon food">🐍</div>
-      <div class="check-name">상아식당</div>
-      <div class="check-flavor">"여수 어항단지의 장어 전문점. 바다장어 장어탕, 소금구이·양념구이가 대표 메뉴. 여행 마지막 식사를 든든하게"</div>
-      <div class="check-detail">영업 07:00~20:00 · 예약·포장·주차 가능 · 대체: 7공주장어탕</div>
-    </div>
-    <div class="check-card">
-      <div class="check-icon cafe">☕</div>
-      <div class="check-name">모이핀 (선택)</div>
-      <div class="check-flavor">"널찍한 통유리 앞 커피 한 잔. 여수의 여유를 마지막까지."</div>
-      <div class="check-detail">향일암 인근 오션뷰 대형카페 · 귀가 전 쉼</div>
+      <div class="check-header">
+        <div class="check-icon cafe">☕</div>
+        <div class="check-name">카페톨 (선택)</div>
+      </div>
+      <div class="check-flavor">"다랭이 논밭 너머 수평선이 예쁜 작은 카페"</div>
+      <div class="check-detail">
+        <div class="info-line">다랭이마을 인근 (마을 주차장 이용)</div>
+      </div>
     </div>
   </div>
 
-  <h3 style="margin:2rem 0 0.8rem; color:#e65100; font-size:1.1rem;">🔄 대체 관광지 요약</h3>
+  <h3 style="margin:2.5rem 0 1rem; color:var(--sea); font-size:1.6rem; font-weight:900;">⛴ 둘째 날 (여수 권역)</h3>
   <div class="checklist-grid">
     <div class="check-card">
-      <div class="check-icon spot" style="background:#e8f5e9;">🏖</div>
-      <div class="check-name">상주은모래비치</div>
-      <div class="check-flavor">"이름 그대로 은빛 모래가 반짝이는 해변. 파도 소리만으로 힐링."</div>
-      <div class="check-detail">평지 해변 산책 · <strong>보리암 불가 시 대체</strong></div>
+      <div class="check-header">
+        <div class="check-icon food">🦀</div>
+        <div class="check-name">꽃돌게장1번가</div>
+      </div>
+      <div class="check-flavor">"여수 현지인 줄 서는 밥도둑 간장게장 (2일차 점심)"</div>
+      <div class="check-detail">
+        <div class="info-line">📍 전남 여수시 봉산2로 36</div>
+        <div class="info-line">📞 0507-1395-0006 (영업 10:00~20:30)</div>
+        <div class="info-line alert-text">※ 브레이크타임: 15:00~17:00 (일찍 드세요!)</div>
+      </div>
     </div>
+
     <div class="check-card">
-      <div class="check-icon spot" style="background:#e8f5e9;">🌺</div>
-      <div class="check-name">섬이정원</div>
-      <div class="check-flavor">"남해의 작은 유럽 정원. 사계절 꽃이 피어 있는 실내외 가든."</div>
-      <div class="check-detail">실내+평지 정원 · <strong>독일마을 불가 시 대체</strong></div>
+      <div class="check-header">
+        <div class="check-icon spot">🌿</div>
+        <div class="check-name">오동도</div>
+      </div>
+      <div class="check-flavor">"동백꽃 3,000그루 터널 섬"</div>
+      <div class="check-detail">
+        <div class="info-line">📍 공영주차장: 전남 여수시 오동도로 116</div>
+        <div class="info-line">걷지 마시고 꼭 동백열차를 타세요!</div>
+      </div>
     </div>
+
     <div class="check-card">
-      <div class="check-icon spot" style="background:#e3f2fd;">🐠</div>
-      <div class="check-name">아쿠아플라넷 여수</div>
-      <div class="check-flavor">"남해 바다를 통째로 옮긴 대형 아쿠아리움. 벨루가가 인사."</div>
-      <div class="check-detail">09:30~19:00, 관람 2시간 · <strong>오동도·향일암 불가 시 대체</strong></div>
+      <div class="check-header">
+        <div class="check-icon spot">🚡</div>
+        <div class="check-name">해상케이블카 (선택)</div>
+      </div>
+      <div class="check-flavor">"바다 위 25분 공중 산책"</div>
+      <div class="check-detail">
+        <div class="info-line">📍 전남 여수시 돌산읍 돌산로 3600-1 (돌산공원 정류장)</div>
+        <div class="info-line">경로우대 할인은 현장에서 발권하세요. (주차 1시간 무료)</div>
+      </div>
     </div>
+
     <div class="check-card">
-      <div class="check-icon spot" style="background:#f3e5f5;">🎨</div>
-      <div class="check-name">아르떼뮤지엄 여수</div>
-      <div class="check-flavor">"빛과 소리의 몰입형 미디어아트. 비 오는 날 오히려 더 좋은 곳."</div>
-      <div class="check-detail">성인 19,000원 · <strong>오동도·향일암 불가 시 대체</strong></div>
+      <div class="check-header">
+        <div class="check-icon stay">🏠</div>
+        <div class="check-name">엘론펜션</div>
+      </div>
+      <div class="check-flavor">"아늑하고 편안한 독채 한옥 숙소"</div>
+      <div class="check-detail">
+        <div class="info-line">📍 전남 여수시 소라면 오룡길 28</div>
+        <div class="info-line">📞 <strong>010-5631-5016</strong> (체크인 16:00 / 체크아웃 12:00)</div>
+      </div>
+    </div>
+
+    <div class="check-card">
+      <div class="check-header">
+        <div class="check-icon food">🐟</div>
+        <div class="check-name">황금수산</div>
+      </div>
+      <div class="check-flavor">"여수 계절 로컬 횟집, 봄 도다리쑥국 (2일차 저녁)"</div>
+      <div class="check-detail">
+        <div class="info-line">📍 전남 여수시 소호1길 86</div>
+        <div class="info-line">📞 061-683-3382</div>
+        <div class="info-line alert-text">※ 휴무일 변동이 있으니 당일 꼭! 오픈 전화 확인을 하세요.</div>
+      </div>
+    </div>
+
+    <div class="check-card">
+      <div class="check-header">
+        <div class="check-icon spot">⛴</div>
+        <div class="check-name">이사부크루즈</div>
+      </div>
+      <div class="check-flavor">"여수 밤바다 불꽃 야경 투어"</div>
+      <div class="check-detail">
+        <div class="info-line">📍 전남 여수시 돌산읍 돌산로 3617-18</div>
+        <div class="info-line">📞 0507-1357-2128</div>
+        <div class="info-line alert-text">※ 탑승 19:20 / 신분증 필수! 늦어도 6시 50분까지는 매표소 도착!</div>
+      </div>
     </div>
   </div>
+
+  <h3 style="margin:2.5rem 0 1rem; color:var(--sea); font-size:1.6rem; font-weight:900;">🏠 셋째 날 (귀가 일정)</h3>
+  <div class="checklist-grid">
+    <div class="check-card">
+      <div class="check-header">
+        <div class="check-icon food">🍲</div>
+        <div class="check-name">진남옥</div>
+      </div>
+      <div class="check-flavor">"현지인 해장 성지, 뽀얀 국밥 (3일차 아침)"</div>
+      <div class="check-detail">
+        <div class="info-line">영업: 08:00~21:00 (라스트오더 20:00)</div>
+      </div>
+    </div>
+    
+    <div class="check-card">
+      <div class="check-header">
+        <div class="check-icon spot">🌅</div>
+        <div class="check-name">향일암</div>
+      </div>
+      <div class="check-flavor">"기암절벽과 바다가 어우러진 해돋이 암자"</div>
+      <div class="check-detail">
+        <div class="info-line">일출부터 일몰까지 개방 (오르막 계단 천천히)</div>
+      </div>
+    </div>
+
+    <div class="check-card">
+      <div class="check-header">
+        <div class="check-icon food">🐍</div>
+        <div class="check-name">상아식당 (대체: 7공주장어탕)</div>
+      </div>
+      <div class="check-flavor">"여수 어항단지 숯불 장어구이 전문점 (3일차 점심)"</div>
+      <div class="check-detail">
+        <div class="info-line">영업: 07:00~20:00 (예약, 포장, 주차 가능)</div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <div class="footer">
   <span>🌊</span>
-  좋은 여행 되세요!
+  어르신들, 안전하고 즐거운 여행 다녀오시길 바랍니다!
 </div>
 
 <script>
@@ -767,15 +920,14 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.tl-item, .option-card, .alt-route, .cruise-box, .check-card, .warn-banner').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
   observer.observe(el);
 });
 
 document.querySelectorAll('.timeline').forEach(timeline => {
   const items = timeline.querySelectorAll('.tl-item');
-  items.forEach((item, i) => { item.style.transitionDelay = `${i * 0.08}s`; });
+  items.forEach((item, i) => { item.style.transitionDelay = `${i * 0.1}s`; });
 });
 </script>
 </body>
-
 </html>
