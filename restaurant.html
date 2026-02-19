@@ -325,8 +325,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-bottom: 28px;
-    border-radius: var(--radius);
-    overflow: hidden;
   }
   .photo-item {
     position: relative;
@@ -334,6 +332,7 @@
     border-radius: var(--radius-sm);
     aspect-ratio: 4/3;
     background: var(--sand-warm);
+    cursor: zoom-in;
   }
   .photo-item img {
     width: 100%; height: 100%;
@@ -344,13 +343,92 @@
   .photo-caption {
     position: absolute; bottom: 0; left: 0; right: 0;
     padding: 28px 14px 11px;
-    background: linear-gradient(to top, rgba(27,58,75,0.62), transparent);
+    background: linear-gradient(to top, rgba(27,58,75,0.72), transparent);
     color: #fff; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
     opacity: 0; transition: opacity 0.3s ease;
   }
   .photo-item:hover .photo-caption { opacity: 1; }
+  .photo-zoom-hint {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 46px; height: 46px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; pointer-events: none;
+    opacity: 0; transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .photo-item:hover .photo-zoom-hint {
+    opacity: 1; transform: translate(-50%, -50%) scale(1);
+  }
   @media (max-width: 500px) {
     .photo-gallery { gap: 7px; }
+  }
+
+  /* Lightbox */
+  .lightbox-overlay {
+    position: fixed; inset: 0; z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(8, 16, 24, 0.88);
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.38s cubic-bezier(0.23, 1, 0.32, 1);
+    padding: 24px;
+  }
+  .lightbox-overlay.open {
+    opacity: 1; pointer-events: all;
+  }
+  .lightbox-inner {
+    position: relative;
+    max-width: min(88vw, 800px);
+    max-height: 88vh;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow:
+      0 40px 100px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(255,255,255,0.08),
+      inset 0 1px 0 rgba(255,255,255,0.12);
+    transform: scale(0.86) translateY(24px);
+    transition: transform 0.42s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .lightbox-overlay.open .lightbox-inner {
+    transform: scale(1) translateY(0);
+  }
+  .lightbox-img {
+    display: block;
+    width: 100%; max-height: 82vh;
+    object-fit: contain;
+  }
+  .lightbox-caption-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 48px 22px 18px;
+    background: linear-gradient(to top, rgba(8,16,24,0.82), transparent);
+    color: #fff; font-size: 15px; font-weight: 600; letter-spacing: 0.5px;
+  }
+  .lightbox-close {
+    position: fixed; top: 22px; right: 26px;
+    width: 46px; height: 46px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: #fff; font-size: 22px; line-height: 1;
+    transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1001; user-select: none;
+  }
+  .lightbox-close:hover {
+    background: rgba(255,255,255,0.22);
+    transform: scale(1.1) rotate(90deg);
+    border-color: rgba(255,255,255,0.35);
+  }
+  .lightbox-counter {
+    position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.55); font-size: 13px; font-weight: 600;
+    letter-spacing: 3px; z-index: 1001; pointer-events: none;
   }
 
   .alert {
@@ -502,10 +580,12 @@
           <div class="photo-item">
             <img src="dow-interior.png" alt="도우 레스토랑 인테리어" loading="lazy">
             <span class="photo-caption">인테리어</span>
+            <span class="photo-zoom-hint">⊕</span>
           </div>
           <div class="photo-item">
             <img src="dow-food.png" alt="도우 대표 요리" loading="lazy">
             <span class="photo-caption">대표 요리</span>
+            <span class="photo-zoom-hint">⊕</span>
           </div>
         </div>
         <div class="info-chips">
@@ -681,6 +761,16 @@
   </footer>
 </div>
 
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true">
+  <div class="lightbox-inner" id="lightboxInner">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption-bar" id="lightboxCaption"></div>
+  </div>
+  <button class="lightbox-close" id="lightboxClose" aria-label="닫기">✕</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
 <script>
   const pb = document.getElementById('progressBar');
   window.addEventListener('scroll', () => {
@@ -707,6 +797,51 @@
       es.forEach(e => { if (e.isIntersecting) { e.target.style.cssText = 'opacity:1;transform:translateX(0);transition:all 0.6s cubic-bezier(0.23,1,0.32,1)'; o.unobserve(e.target); }});
     }, { threshold: 0.5 }).observe(h);
   });
+
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  const lbCaption = document.getElementById('lightboxCaption');
+  const lbCounter = document.getElementById('lightboxCounter');
+  const lbClose = document.getElementById('lightboxClose');
+
+  let allItems = [], currentLbIdx = 0;
+
+  function buildItemList() {
+    allItems = [...document.querySelectorAll('.photo-item')];
+    allItems.forEach((item, idx) => {
+      item.addEventListener('click', () => openLb(idx));
+    });
+  }
+
+  function openLb(idx) {
+    currentLbIdx = idx;
+    const item = allItems[idx];
+    const img = item.querySelector('img');
+    const cap = item.querySelector('.photo-caption');
+    const gallery = item.closest('.photo-gallery');
+    const siblings = gallery ? [...gallery.querySelectorAll('.photo-item')] : [item];
+    const pos = siblings.indexOf(item);
+
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCaption.textContent = cap ? cap.textContent.trim() : '';
+    lbCounter.textContent = siblings.length > 1 ? `${pos + 1} / ${siblings.length}` : '';
+
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  lbClose.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb || e.target === lbCounter) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+  buildItemList();
 </script>
 </body>
 </html>
