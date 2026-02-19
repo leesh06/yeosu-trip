@@ -390,7 +390,7 @@
   .lightbox-inner {
     position: relative;
     max-width: min(88vw, 800px);
-    max-height: 88vh;
+    max-height: 80vh;
     border-radius: 22px;
     overflow: hidden;
     box-shadow:
@@ -405,7 +405,7 @@
   }
   .lightbox-img {
     display: block;
-    width: 100%; max-height: 82vh;
+    width: 100%; max-height: 74vh;
     object-fit: contain;
   }
   .lightbox-caption-bar {
@@ -431,11 +431,6 @@
     transform: scale(1.1) rotate(90deg);
     border-color: rgba(255,255,255,0.35);
   }
-  .lightbox-counter {
-    position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%);
-    color: rgba(255,255,255,0.55); font-size: 13px; font-weight: 600;
-    letter-spacing: 3px; z-index: 1001; pointer-events: none;
-  }
   .lightbox-nav {
     position: fixed; top: 50%; transform: translateY(-50%);
     width: 50px; height: 50px;
@@ -452,6 +447,31 @@
   .lightbox-nav.hidden { opacity: 0; pointer-events: none; }
   #lbPrev { left: 18px; }
   #lbNext { right: 18px; }
+  /* Thumbnail strip */
+  .lb-thumbs {
+    display: none; gap: 8px; align-items: center; justify-content: center;
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    z-index: 1001;
+    padding: 7px 13px;
+    background: rgba(8,16,24,0.54);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 100px;
+  }
+  .lb-thumb {
+    width: 44px; height: 44px; border-radius: 8px;
+    object-fit: cover; cursor: pointer;
+    opacity: 0.45;
+    border: 2.5px solid transparent;
+    transition: all 0.28s cubic-bezier(0.23, 1, 0.32, 1);
+    flex-shrink: 0;
+  }
+  .lb-thumb.active {
+    opacity: 1;
+    border-color: rgba(255,255,255,0.88);
+    transform: scale(1.12);
+  }
+  .lb-thumb:hover:not(.active) { opacity: 0.72; }
 
   .alert {
     margin-top: 20px; padding: 16px 18px; border-radius: var(--radius-sm);
@@ -784,7 +804,7 @@
     <div class="lightbox-caption-bar" id="lightboxCaption"></div>
   </div>
   <button class="lightbox-close" id="lightboxClose" aria-label="닫기">✕</button>
-  <div class="lightbox-counter" id="lightboxCounter"></div>
+  <div class="lb-thumbs" id="lbThumbs"></div>
   <button class="lightbox-nav hidden" id="lbPrev" aria-label="이전 사진">‹</button>
   <button class="lightbox-nav hidden" id="lbNext" aria-label="다음 사진">›</button>
 </div>
@@ -817,13 +837,13 @@
   });
 
   // Lightbox
-  const lb    = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightboxImg');
-  const lbCap = document.getElementById('lightboxCaption');
-  const lbCnt = document.getElementById('lightboxCounter');
-  const lbClose = document.getElementById('lightboxClose');
-  const lbPrev  = document.getElementById('lbPrev');
-  const lbNext  = document.getElementById('lbNext');
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lightboxImg');
+  const lbCap   = document.getElementById('lightboxCaption');
+  const lbClose  = document.getElementById('lightboxClose');
+  const lbPrev   = document.getElementById('lbPrev');
+  const lbNext   = document.getElementById('lbNext');
+  const lbThumbs = document.getElementById('lbThumbs');
 
   let lbPhotos = [], lbIdx = 0;
 
@@ -831,9 +851,7 @@
     document.querySelectorAll('.photo-stack').forEach(stack => {
       stack.addEventListener('click', () => {
         const imgs = [...stack.querySelectorAll('.stack-item img')];
-        // front card (nth-child(1) = highest z-index) first
-        const photos = imgs.map(img => ({ src: img.src, caption: img.alt }));
-        openLb(photos, 0);
+        openLb(imgs.map(img => ({ src: img.src, caption: img.alt })), 0);
       });
     });
   }
@@ -847,17 +865,40 @@
 
   function renderLb() {
     const p = lbPhotos[lbIdx];
-    lbImg.src = p.src;  lbImg.alt = p.caption;
-    lbCap.textContent  = p.caption;
-    lbCnt.textContent  = lbPhotos.length > 1 ? `${lbIdx + 1}  ·  ${lbPhotos.length}` : '';
+    lbImg.src = p.src; lbImg.alt = p.caption;
+    lbCap.textContent = p.caption;
     lbPrev.classList.toggle('hidden', lbIdx === 0);
     lbNext.classList.toggle('hidden', lbIdx === lbPhotos.length - 1);
+    renderThumbs();
+  }
+
+  function renderThumbs() {
+    if (lbPhotos.length < 2) { lbThumbs.style.display = 'none'; return; }
+    lbThumbs.style.display = 'flex';
+    lbThumbs.innerHTML = '';
+    lbPhotos.forEach((p, i) => {
+      const t = document.createElement('img');
+      t.src = p.src; t.alt = p.caption;
+      t.className = 'lb-thumb' + (i === lbIdx ? ' active' : '');
+      t.addEventListener('click', e => { e.stopPropagation(); lbIdx = i; renderLb(); });
+      lbThumbs.appendChild(t);
+    });
   }
 
   function closeLb() {
     lb.classList.remove('open');
     document.body.style.overflow = '';
   }
+
+  // Touch swipe
+  let touchX0 = 0;
+  lb.addEventListener('touchstart', e => { touchX0 = e.changedTouches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX0;
+    if (Math.abs(dx) < 44) return;
+    if (dx < 0 && lbIdx < lbPhotos.length - 1) { lbIdx++; renderLb(); }
+    if (dx > 0 && lbIdx > 0) { lbIdx--; renderLb(); }
+  }, { passive: true });
 
   lbClose.addEventListener('click', closeLb);
   lbPrev.addEventListener('click', e => { e.stopPropagation(); if (lbIdx > 0) { lbIdx--; renderLb(); } });
