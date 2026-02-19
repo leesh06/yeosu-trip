@@ -319,6 +319,40 @@
   }
   .map-link-btn:active { transform: translateY(0); }
 
+  /* Photo Gallery */
+  .photo-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 28px;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .photo-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    aspect-ratio: 4/3;
+    background: var(--sand-warm);
+  }
+  .photo-item img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .photo-item:hover img { transform: scale(1.07); }
+  .photo-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px 14px 11px;
+    background: linear-gradient(to top, rgba(27,58,75,0.62), transparent);
+    color: #fff; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .photo-item:hover .photo-caption { opacity: 1; }
+  @media (max-width: 500px) {
+    .photo-gallery { gap: 7px; }
+  }
+
   .alert {
     margin-top: 20px; padding: 16px 18px; border-radius: var(--radius-sm);
     font-size: 17px; line-height: 1.7; font-weight: 500;
@@ -464,6 +498,16 @@
       <div class="card-body">
         <h3 class="restaurant-name">도우 (DOW)</h3>
         <p class="restaurant-desc">남해 바다를 마주한 유러피안 감성의 양식 레스토랑. 여행 첫 끼로 해산물 중심의 식단 전, 깔끔한 양식 코스를 즐기기에 좋은 곳.</p>
+        <div class="photo-gallery">
+          <div class="photo-item">
+            <img src="dow-interior.png" alt="도우 레스토랑 인테리어" loading="lazy">
+            <span class="photo-caption">인테리어</span>
+          </div>
+          <div class="photo-item">
+            <img src="dow-food.png" alt="도우 대표 요리" loading="lazy">
+            <span class="photo-caption">대표 요리</span>
+          </div>
+        </div>
         <div class="info-chips">
           <div class="info-row">
             <div class="info-icon">📍</div>
