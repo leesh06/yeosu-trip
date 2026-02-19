@@ -343,10 +343,13 @@
   .stack-item:nth-child(1) { z-index: 3; transform: rotate(-0.5deg); }
   .stack-item:nth-child(2) { z-index: 2; transform: rotate(3.5deg) translateX(5px) translateY(4px); }
   .stack-item:nth-child(3) { z-index: 1; transform: rotate(6.5deg) translateX(9px) translateY(7px); }
+  /* 카드 초기 위치: 4번째 카드 */
+  .stack-item:nth-child(4) { z-index: 0; transform: rotate(9.5deg) translateX(13px) translateY(10px); }
   /* 호버: 카드 펼치기 */
   .photo-stack:hover .stack-item:nth-child(1) { transform: rotate(-2deg) translateX(-3px) translateY(-3px); box-shadow: 0 16px 40px rgba(27,58,75,0.18); }
   .photo-stack:hover .stack-item:nth-child(2) { transform: rotate(5deg) translateX(8px) translateY(6px); }
   .photo-stack:hover .stack-item:nth-child(3) { transform: rotate(9deg) translateX(14px) translateY(10px); }
+  .photo-stack:hover .stack-item:nth-child(4) { transform: rotate(13deg) translateX(20px) translateY(14px); }
   /* 줌 힌트 */
   .zoom-hint {
     position: absolute; top: 50%; left: 50%;
@@ -646,6 +649,14 @@
       <div class="card-body">
         <h3 class="restaurant-name">시골할매 막걸리</h3>
         <p class="restaurant-desc">3대째 가업을 이어온 토속 음식점. 외부 테라스에서 바다와 다랭이논이 어우러진 절경을 바라보며 정갈한 밥상을 즐길 수 있다.</p>
+        <div class="photo-stack">
+          <div class="stack-item"><img src="halmae-food3.png" alt="대표 음식" loading="lazy"></div>
+          <div class="stack-item"><img src="halmae-food2.png" alt="음식" loading="lazy"></div>
+          <div class="stack-item"><img src="halmae-food1.png" alt="음식" loading="lazy"></div>
+          <div class="stack-item"><img src="halmae-interior.png" alt="인테리어" loading="lazy"></div>
+          <span class="zoom-hint">⊕</span>
+          <span class="stack-count">📷 4</span>
+        </div>
         <div class="info-chips">
           <div class="info-row">
             <div class="info-icon">📍</div>
