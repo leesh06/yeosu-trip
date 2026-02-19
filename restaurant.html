@@ -319,52 +319,58 @@
   }
   .map-link-btn:active { transform: translateY(0); }
 
-  /* Photo Gallery */
-  .photo-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 28px;
-  }
-  .photo-item {
+  /* Photo Stack */
+  .photo-stack {
     position: relative;
-    overflow: hidden;
-    border-radius: var(--radius-sm);
     aspect-ratio: 4/3;
-    background: var(--sand-warm);
+    margin-bottom: 32px;
     cursor: zoom-in;
   }
-  .photo-item img {
+  .stack-item {
+    position: absolute; inset: 0;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--sand-warm);
+    box-shadow: 0 8px 28px rgba(27,58,75,0.14), 0 2px 6px rgba(27,58,75,0.08);
+    transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.48s ease;
+  }
+  .stack-item img {
     width: 100%; height: 100%;
     object-fit: cover; display: block;
-    transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
   }
-  .photo-item:hover img { transform: scale(1.07); }
-  .photo-caption {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 28px 14px 11px;
-    background: linear-gradient(to top, rgba(27,58,75,0.72), transparent);
-    color: #fff; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
-    opacity: 0; transition: opacity 0.3s ease;
-  }
-  .photo-item:hover .photo-caption { opacity: 1; }
-  .photo-zoom-hint {
+  /* 카드 초기 위치: 뒤에 있는 카드들 */
+  .stack-item:nth-child(1) { z-index: 3; transform: rotate(-0.5deg); }
+  .stack-item:nth-child(2) { z-index: 2; transform: rotate(3.5deg) translateX(5px) translateY(4px); }
+  .stack-item:nth-child(3) { z-index: 1; transform: rotate(6.5deg) translateX(9px) translateY(7px); }
+  /* 호버: 카드 펼치기 */
+  .photo-stack:hover .stack-item:nth-child(1) { transform: rotate(-2deg) translateX(-3px) translateY(-3px); box-shadow: 0 16px 40px rgba(27,58,75,0.18); }
+  .photo-stack:hover .stack-item:nth-child(2) { transform: rotate(5deg) translateX(8px) translateY(6px); }
+  .photo-stack:hover .stack-item:nth-child(3) { transform: rotate(9deg) translateX(14px) translateY(10px); }
+  /* 줌 힌트 */
+  .zoom-hint {
     position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    width: 46px; height: 46px;
-    background: rgba(255,255,255,0.18);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.35);
+    transform: translate(-50%, -50%) scale(0.75);
+    width: 48px; height: 48px;
+    background: rgba(255,255,255,0.20);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.40);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px; pointer-events: none;
-    opacity: 0; transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    font-size: 20px; pointer-events: none;
+    opacity: 0; transition: all 0.32s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 10;
   }
-  .photo-item:hover .photo-zoom-hint {
-    opacity: 1; transform: translate(-50%, -50%) scale(1);
-  }
-  @media (max-width: 500px) {
-    .photo-gallery { gap: 7px; }
+  .photo-stack:hover .zoom-hint { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  /* 사진 수 뱃지 */
+  .stack-count {
+    position: absolute; bottom: 14px; right: 14px;
+    background: rgba(27,58,75,0.60);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.8px;
+    padding: 5px 12px; border-radius: 100px;
+    z-index: 10; pointer-events: none;
+    border: 1px solid rgba(255,255,255,0.15);
   }
 
   /* Lightbox */
@@ -430,6 +436,22 @@
     color: rgba(255,255,255,0.55); font-size: 13px; font-weight: 600;
     letter-spacing: 3px; z-index: 1001; pointer-events: none;
   }
+  .lightbox-nav {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    width: 50px; height: 50px;
+    background: rgba(255,255,255,0.11);
+    border: 1px solid rgba(255,255,255,0.20);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: #fff; font-size: 26px; line-height: 1;
+    transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1001; user-select: none;
+  }
+  .lightbox-nav:hover { background: rgba(255,255,255,0.22); transform: translateY(-50%) scale(1.1); }
+  .lightbox-nav.hidden { opacity: 0; pointer-events: none; }
+  #lbPrev { left: 18px; }
+  #lbNext { right: 18px; }
 
   .alert {
     margin-top: 20px; padding: 16px 18px; border-radius: var(--radius-sm);
@@ -576,17 +598,11 @@
       <div class="card-body">
         <h3 class="restaurant-name">도우 (DOW)</h3>
         <p class="restaurant-desc">남해 바다를 마주한 유러피안 감성의 양식 레스토랑. 여행 첫 끼로 해산물 중심의 식단 전, 깔끔한 양식 코스를 즐기기에 좋은 곳.</p>
-        <div class="photo-gallery">
-          <div class="photo-item">
-            <img src="dow-interior.png" alt="도우 레스토랑 인테리어" loading="lazy">
-            <span class="photo-caption">인테리어</span>
-            <span class="photo-zoom-hint">⊕</span>
-          </div>
-          <div class="photo-item">
-            <img src="dow-food.png" alt="도우 대표 요리" loading="lazy">
-            <span class="photo-caption">대표 요리</span>
-            <span class="photo-zoom-hint">⊕</span>
-          </div>
+        <div class="photo-stack">
+          <div class="stack-item"><img src="dow-food.png" alt="대표 요리" loading="lazy"></div>
+          <div class="stack-item"><img src="dow-interior.png" alt="인테리어" loading="lazy"></div>
+          <span class="zoom-hint">⊕</span>
+          <span class="stack-count">📷 2</span>
         </div>
         <div class="info-chips">
           <div class="info-row">
@@ -769,6 +785,8 @@
   </div>
   <button class="lightbox-close" id="lightboxClose" aria-label="닫기">✕</button>
   <div class="lightbox-counter" id="lightboxCounter"></div>
+  <button class="lightbox-nav hidden" id="lbPrev" aria-label="이전 사진">‹</button>
+  <button class="lightbox-nav hidden" id="lbNext" aria-label="다음 사진">›</button>
 </div>
 
 <script>
@@ -799,37 +817,41 @@
   });
 
   // Lightbox
-  const lb = document.getElementById('lightbox');
+  const lb    = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightboxImg');
-  const lbCaption = document.getElementById('lightboxCaption');
-  const lbCounter = document.getElementById('lightboxCounter');
+  const lbCap = document.getElementById('lightboxCaption');
+  const lbCnt = document.getElementById('lightboxCounter');
   const lbClose = document.getElementById('lightboxClose');
+  const lbPrev  = document.getElementById('lbPrev');
+  const lbNext  = document.getElementById('lbNext');
 
-  let allItems = [], currentLbIdx = 0;
+  let lbPhotos = [], lbIdx = 0;
 
-  function buildItemList() {
-    allItems = [...document.querySelectorAll('.photo-item')];
-    allItems.forEach((item, idx) => {
-      item.addEventListener('click', () => openLb(idx));
+  function buildStacks() {
+    document.querySelectorAll('.photo-stack').forEach(stack => {
+      stack.addEventListener('click', () => {
+        const imgs = [...stack.querySelectorAll('.stack-item img')];
+        // front card (nth-child(1) = highest z-index) first
+        const photos = imgs.map(img => ({ src: img.src, caption: img.alt }));
+        openLb(photos, 0);
+      });
     });
   }
 
-  function openLb(idx) {
-    currentLbIdx = idx;
-    const item = allItems[idx];
-    const img = item.querySelector('img');
-    const cap = item.querySelector('.photo-caption');
-    const gallery = item.closest('.photo-gallery');
-    const siblings = gallery ? [...gallery.querySelectorAll('.photo-item')] : [item];
-    const pos = siblings.indexOf(item);
-
-    lbImg.src = img.src;
-    lbImg.alt = img.alt;
-    lbCaption.textContent = cap ? cap.textContent.trim() : '';
-    lbCounter.textContent = siblings.length > 1 ? `${pos + 1} / ${siblings.length}` : '';
-
+  function openLb(photos, startIdx) {
+    lbPhotos = photos; lbIdx = startIdx;
+    renderLb();
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
+  }
+
+  function renderLb() {
+    const p = lbPhotos[lbIdx];
+    lbImg.src = p.src;  lbImg.alt = p.caption;
+    lbCap.textContent  = p.caption;
+    lbCnt.textContent  = lbPhotos.length > 1 ? `${lbIdx + 1}  ·  ${lbPhotos.length}` : '';
+    lbPrev.classList.toggle('hidden', lbIdx === 0);
+    lbNext.classList.toggle('hidden', lbIdx === lbPhotos.length - 1);
   }
 
   function closeLb() {
@@ -838,10 +860,17 @@
   }
 
   lbClose.addEventListener('click', closeLb);
-  lb.addEventListener('click', e => { if (e.target === lb || e.target === lbCounter) closeLb(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+  lbPrev.addEventListener('click', e => { e.stopPropagation(); if (lbIdx > 0) { lbIdx--; renderLb(); } });
+  lbNext.addEventListener('click', e => { e.stopPropagation(); if (lbIdx < lbPhotos.length - 1) { lbIdx++; renderLb(); } });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft')  { if (lbIdx > 0) { lbIdx--; renderLb(); } }
+    if (e.key === 'ArrowRight') { if (lbIdx < lbPhotos.length - 1) { lbIdx++; renderLb(); } }
+  });
 
-  buildItemList();
+  buildStacks();
 </script>
 </body>
 </html>
