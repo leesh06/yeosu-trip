@@ -1,8 +1,9 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/restaurant.html",
-      "destination": "/404"
+      "destination": "/404",
+      "statusCode": 308
     }
   ]
 }
