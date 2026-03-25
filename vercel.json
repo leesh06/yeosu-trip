@@ -4,6 +4,11 @@
       "source": "/restaurant.html",
       "destination": "/expired.html",
       "statusCode": 308
+    },
+    {
+      "source": "/",
+      "destination": "/expired.html",
+      "statusCode": 308
     }
   ]
 }
