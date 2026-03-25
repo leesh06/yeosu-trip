@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/restaurant.html",
-      "destination": "/404",
+      "destination": "/expired.html",
       "statusCode": 308
     }
   ]
